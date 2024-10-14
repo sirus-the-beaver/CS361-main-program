@@ -1,1 +1,2 @@
 # CS361-main-program
+This repository contains the main program for my CS361: Software Engineering 1 portfolio project. Throughout the term, I will develop and integrate various microservices into this program to achieve the overall functionality of the project. Each microservice will be hosted in its own repository and linked here as they are implemented.
