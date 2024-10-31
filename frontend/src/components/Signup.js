@@ -1,7 +1,11 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
+import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
+import { AuthContext } from '../context/AuthContext';
 
 const Signup = () => {
+    const { login } = useContext(AuthContext);
+    const navigate = useNavigate();
     const [formData, setFormData] = useState({ username: "", email: "", password: "", confirmPassword: "" });
     const [error, setError] = useState(null);
 
@@ -13,6 +17,8 @@ const Signup = () => {
         e.preventDefault();
         try {
             const res = await axios.post("http://localhost:5000/users/register", formData);
+            login(res.data);
+            navigate("/preferences");
             console.log("Account created:", res.data);
         } catch (error) {
             setError(error.response?.data?.message);
