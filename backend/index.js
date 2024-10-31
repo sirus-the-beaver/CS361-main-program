@@ -3,6 +3,7 @@ const cors = require('cors');
 const db = require('./config/db');
 
 const app = express();
+const PORT = process.env.PORT || 5000;
 db();
 
 app.use(cors());
@@ -12,4 +13,6 @@ const userRoutes = require('./routes/userRoutes');
 
 app.use('/api/users', userRoutes);
 
-module.exports = app;
+app.listen(PORT, () => {
+    console.log(`Server running on port ${PORT}`);
+});
