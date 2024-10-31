@@ -16,7 +16,7 @@ const Signup = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            const res = await axios.post("http://localhost:5000/users/register", formData);
+            const res = await axios.post("http://localhost:5002/users/register", formData);
             login(res.data);
             navigate("/preferences");
             console.log("Account created:", res.data);

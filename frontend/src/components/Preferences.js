@@ -6,7 +6,7 @@ const Preferences = () => {
 
     const savePreferences = async () => {
         try {
-            await axios.put("http://localhost:5000/users/preferences", { preferences }, {
+            await axios.put("http://localhost:5002/users/preferences", { preferences }, {
                 headers: {
                     Authorization: `Bearer ${localStorage.getItem("token")}`
                 }
