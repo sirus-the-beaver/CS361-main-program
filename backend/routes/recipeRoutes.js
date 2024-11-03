@@ -8,10 +8,12 @@ router.post('/', (req, res) => {
     
     const recipes = async (ingredients) => {
         try {
-            const response = await axios.post('https://api.spoonacular.com/recipes/findByIngredients', {
-                apiKey: process.env.SPOONACULAR_API_KEY,
-                ingredients: ingredients.join(','),
-                ranking: 2
+            const response = await axios.get('https://api.spoonacular.com/recipes/findByIngredients', {
+                params: {
+                    ingredients: ingredients.join(','),
+                    ranking: 2,
+                    apiKey: process.env.SPOONACULAR_API_KEY
+                }
             });
             return response;
         } catch (error) {
