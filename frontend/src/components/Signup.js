@@ -18,7 +18,7 @@ const Signup = () => {
         try {
             const res = await axios.post("http://localhost:5002/users/register", formData);
             login(res.data);
-            navigate("/preferences");
+            navigate("/ingredient-input");
             console.log("Account created:", res.data);
         } catch (error) {
             setError(error.response?.data?.message);
