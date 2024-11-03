@@ -38,6 +38,34 @@ router.post("/register", async(req, res) => {
     }
 });
 
+router.post("/login", async(req, res) => {
+    const { email, password } = req.body;
+
+    try {
+        const user = await User.findOne({ email });
+        if (!user) {
+            return res.status(400).json({ message: "Invalid email or password" });
+        }
+
+        const isMatch = await bcrypt.compare(password, user.password);
+        if (!isMatch) {
+            return res.status(400).json({ message: "Invalid email or password" });
+        }
+
+        const payload = {
+            user: {
+                id: user.id
+            }
+        };
+        const token = jwt.sign(payload, process.env.JWT_SECRET, { expiresIn: "1h" });
+
+        res.status(200).json({ token });
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ message: "Server Error" });
+    }
+});
+
 router.put("/preferences", async(req, res) => {
     const { id } = req.user;
     const { preferences } = req.body;

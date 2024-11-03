@@ -21,3 +21,5 @@ router.post('/', (req, res) => {
     }
     res.json(recipes(ingredients));
 })
+
+module.exports = router;
