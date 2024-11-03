@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import axios from 'axios';
 
 const IngredientInput = () => {
     const [ingredient, setIngredient] = useState('');
@@ -13,7 +14,24 @@ const IngredientInput = () => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        console.log(ingredientsList);
+        try {
+            const response = await axios.post('http://localhost:5002/recipes', 
+                { ingredients: ingredientsList },
+                { headers: { 
+                    Authorization: `Bearer ${localStorage.getItem('token')}`,
+                    'Content-Type': 'application/json'
+                    } 
+                }
+            )
+
+            if (response.status === 200) {
+                console.log(response.data);
+            } else {
+                console.error('An error occurred');
+            }
+        } catch (error) {
+            console.error(error);
+        }
     }
 
     return (
