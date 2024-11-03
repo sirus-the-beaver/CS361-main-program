@@ -23,9 +23,8 @@ const IngredientInput = () => {
                     } 
                 }
             )
-
             if (response.status === 200) {
-                console.log(response.data);
+                console.log(response);
             } else {
                 console.error('An error occurred');
             }
