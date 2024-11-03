@@ -3,7 +3,7 @@ const axios = require('axios');
 
 const router = express.Router();
 
-router.post('/recipes', (req, res) => {
+router.post('/', (req, res) => {
     const { ingredients } = req.body;
     
     const recipes = async (ingredients) => {

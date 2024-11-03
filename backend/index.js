@@ -13,8 +13,10 @@ app.use(cors());
 app.use(express.json());
 
 const userRoutes = require('./routes/userRoutes');
+const recipeRoutes = require('./routes/recipeRoutes');
 
 app.use('/users', userRoutes);
+app.use('/recipes', recipeRoutes);
 
 app.listen(PORT, () => {
     console.log(`Server running on port ${PORT}`);
