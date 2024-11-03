@@ -3,6 +3,7 @@ import Signup from './components/Signup';
 import SignIn from './components/SignIn';
 import Preferences from './components/Preferences';
 import IngredientInput from './components/IngredientInput';
+import RecipeList from './components/RecipeList';
 
 function App() {
   const navigate = useNavigate();
@@ -18,6 +19,7 @@ function App() {
         <Route path="/signin" element={<SignIn />} />
         <Route path="/preferences" element={<Preferences />} />
         <Route path="/ingredient-input" element={<IngredientInput />} />
+        <Route path="/recipes-list" element={<RecipeList />} />
       </Routes>
     </div>
   );

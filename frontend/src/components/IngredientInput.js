@@ -1,7 +1,9 @@
 import React, { useState } from 'react';
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 
 const IngredientInput = () => {
+    const navigate = useNavigate();
     const [ingredient, setIngredient] = useState('');
     const [ingredientsList, setIngredientsList] = useState([]);
 
@@ -24,7 +26,7 @@ const IngredientInput = () => {
                 }
             )
             if (response.status === 200) {
-                console.log(response);
+                navigate('/recipes-list', { state: { recipes: response.data } });
             } else {
                 console.error('An error occurred');
             }
