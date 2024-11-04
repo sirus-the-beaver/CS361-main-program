@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Routes, Route, useNavigate } from 'react-router-dom';
 import Signup from './components/Signup';
 import SignIn from './components/SignIn';
+import SignOut from './components/SignOut';
 import Preferences from './components/Preferences';
 import IngredientInput from './components/IngredientInput';
 import RecipeList from './components/RecipeList';
@@ -25,6 +26,7 @@ function App() {
           {signedIn ? (
             <nav>
               <button className="text-white text-lg font-medium mr-4" onClick={() => navigate('/preferences')}>Preferences</button>
+              <SignOut />
             </nav>
           ) : (
             <nav>
