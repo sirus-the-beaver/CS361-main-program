@@ -35,6 +35,7 @@ router.get('/:id', async (req, res) => {
                     stepBreakdown: true
                 }
             })
+            return response.data;
         } catch (error) {
             console.error(error);
             return null;
