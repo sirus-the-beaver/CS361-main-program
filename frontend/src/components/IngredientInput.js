@@ -74,23 +74,23 @@ const IngredientInput = () => {
                 >
                     Add Ingredient
                 </button>
-                <ul>
+                <ul className="space-y-2 mb-4">
                     {ingredientsList.map((ingredient, index) => (
-                        <li key={index} className="mb-2">{ingredient}</li>
+                        <li key={index} className="text-grau-700 text-lg">{ingredient}</li>
                     ))}
                 </ul>
-                <label>
+                <label className="flex items-center mb-4">
                     <input 
                         type='checkbox' 
                         checked={ignorePantry}
                         onChange={(e) => setIgnorePantry(e.target.checked)}
-                        className="mr-2"
+                        className="mr-2 h-5 w-5 text-green-500 focus:ring-green-400 border-gray-300 rounded"
                     />
-                    Ignore common pantry ingredients such as water, flour, salt, etc.
+                    <span className="text-gray-600">Ignore common pantry ingredients such as water, flour, salt, etc.</span>
                 </label>
                 <button 
                     type='submit' 
-                    className="bg-green-500 text-white px-4 py-2 rounded-lg"
+                    className="bg-green-500 text-white px-4 py-2 rounded-lg hpver:bg-green-600 focus:outline-none focus:ring-2 focus:ring-green-400 transition duration-300"
                 >
                     Find Recipes
                 </button>
