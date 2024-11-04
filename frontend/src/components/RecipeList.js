@@ -11,7 +11,9 @@ const RecipeList = () => {
     const viewRecipe = (id) => {
         const fetchRecipe = async () => {
             try {
-                const response = await axios.get(`http://localhost:5002/recipes/${id}`);
+                const response = await axios.get(`http://localhost:5002/recipes/${id}`,
+                    { headers: { Authorization: `Bearer ${localStorage.getItem('token')}` }
+                    });
                 navigate(`/recipe-detail`, { state: { recipe: response.data } });
             } catch (error) {
                 console.error(error);

@@ -2,6 +2,7 @@ const express = require('express');
 const cors = require('cors');
 const db = require('./config/db');
 const dotenv = require('dotenv');
+const authMiddleware = require('./middleware/authMiddleware');
 
 dotenv.config();
 
@@ -16,6 +17,8 @@ const userRoutes = require('./routes/userRoutes');
 const recipeRoutes = require('./routes/recipeRoutes');
 
 app.use('/users', userRoutes);
+
+app.use(authMiddleware);
 app.use('/recipes', recipeRoutes);
 
 app.listen(PORT, () => {
