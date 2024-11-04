@@ -1,6 +1,7 @@
 import React from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import axios from 'axios';
+import { FcPrevious } from 'react-icons/fc';
 
 const RecipeList = () => {
     const location = useLocation();
@@ -21,6 +22,13 @@ const RecipeList = () => {
 
     return (
         <div>
+            <button 
+                onClick={() => navigate(-1)} 
+                className="text-blue-500 underline mr-2"
+            >
+                <FcPrevious className="inline-block" size={48} />
+                Ingredient Input
+            </button>
             <h2 className="text-2xl font-bold mb-4">Recipes</h2>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
                 {recipes.map(recipe => (

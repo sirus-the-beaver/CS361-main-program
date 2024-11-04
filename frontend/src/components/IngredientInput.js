@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
-import { FcInfo } from 'react-icons/fc';
+import { FcInfo, FcPrevious } from 'react-icons/fc';
 
 const IngredientInput = () => {
     const navigate = useNavigate();
@@ -43,7 +43,7 @@ const IngredientInput = () => {
                     onClick={() => navigate(-1)} 
                     className="text-blue-500 underline mr-2"
                 >
-                    Back
+                    <FcPrevious className="inline-block" size={48} />
                 </button>
                 
                 <div className="relative flex items-center">
