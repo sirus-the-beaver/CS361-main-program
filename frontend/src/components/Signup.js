@@ -26,14 +26,23 @@ const Signup = () => {
     };
 
     return (
-        <form onSubmit={handleSubmit} className='space-y-4'>
-            <input type="text" name="username" placeholder="Username" onChange={handleChange} className='block w-full p-2 border border-gray-300 rounded' required />
-            <input type="email" name="email" placeholder="Email" onChange={handleChange} className='block w-full p-2 border border-gray-300 rounded' required />
-            <input type="password" name="password" placeholder="Password" onChange={handleChange} className='block w-full p-2 border border-gray-300 rounded' required />
-            <input type="password" name="confirmPassword" placeholder="Confirm Password" onChange={handleChange} className='block w-full p-2 border border-gray-300 rounded' required />
-            <button type="submit" className='block w-full p-2 bg-blue-500 text-white rounded'>Sign Up</button>
-            {error && <p className='text-red-500'>{error}</p>}
-        </form>
+        <div>
+            <h2>Sign Up For an Account</h2>
+            <form onSubmit={handleSubmit} className='space-y-4'>
+                <label>Username</label>
+                <input type="text" name="username" placeholder="Username" onChange={handleChange} className='block w-full p-2 border border-gray-300 rounded' required />
+                <label>Email</label>
+                <input type="email" name="email" placeholder="Email" onChange={handleChange} className='block w-full p-2 border border-gray-300 rounded' required />
+                <label>Password</label>
+                <input type="password" name="password" placeholder="Password" onChange={handleChange} className='block w-full p-2 border border-gray-300 rounded' required />
+                <label>Confirm Password</label>
+                <input type="password" name="confirmPassword" placeholder="Confirm Password" onChange={handleChange} className='block w-full p-2 border border-gray-300 rounded' required />
+                <button type="submit" className='block w-full p-2 bg-blue-500 text-white rounded'>Sign Up</button>
+                {error && <p className='text-red-500'>{error}</p>}
+            </form>
+            <p>Sign up for an account to be able to keep track of your ingredients and save your favorite recipes!</p>
+            <p>Already have an account? <a href='/signin'>Sign in</a></p>
+        </div>
     );
 };
 
