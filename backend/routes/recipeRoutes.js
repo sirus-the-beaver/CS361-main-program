@@ -40,6 +40,9 @@ router.get('/:id', async (req, res) => {
             return null;
         }
     }
+
+    const instructions = await recipe(id);
+    res.json(instructions);
 });
 
 module.exports = router;
