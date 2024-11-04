@@ -8,22 +8,22 @@ const RecipeDetail = () => {
     const recipe = location.state.recipe;
 
     return (
-        <div>
+        <div className="p-6 bg-gray-100 min-h-screen">
             <button 
                 onClick={() => navigate(-1)} 
-                className="text-blue-500 underline mr-2"
+                className="text-blue-500 underline mr-2 hover:text-blue-700 transition duration-300"
             >
                 <FcPrevious className="inline-block" size={48} />
                 Recipe List
             </button>
-            <h1 className='text-2xl font-semibold'>Recipe Detail</h1>
-            <div className='space-y-4'>
+            <h1 className="text-3xl font-extrabold mb-6 text-gray-800">Recipe Detail</h1>
+            <div className="space-y-6">
                 {recipe.map((section, index) => (
-                    <div key={index}>
-                        <h2 className='text-lg font-semibold'>{section.name}</h2>
+                    <div key={index} className="bg-white p-6 rounded-lg shadow-lg">
+                        <h2 className="text-2xl font-semibold text-gray-700 mb-4">{section.name}</h2>
                         {section.steps.map((step, index) => (
-                            <div key={index} className='border rounded-lg p-4 shadow'>
-                                <h3 className='text-lg font-semibold'>Step {step.number}</h3>
+                            <div key={index} className="border rounded-lg p-4 shadow mb-4">
+                                <h3 className="text-lg font-semibold text-gray-600">Step {step.number}</h3>
                                 <h4 className='text-lg font-semibold'>Equipment</h4>
                                 <ul>
                                     {step.equipment.map((equipment, index) => (
