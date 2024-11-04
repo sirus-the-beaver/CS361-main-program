@@ -1,33 +1,24 @@
 import React, { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
 import axios from 'axios';
 
 const RecipeDetail = () => {
-    const { id } = useParams();
-    const [recipe, setRecipe] = useState(null);
-
-    useEffect(() => {
-        const fetchRecipe = async () => {
-            try {
-                const response = await axios.get(`http://localhost:5002/recipes/${id}`);
-                setRecipe(response.data);
-            } catch (error) {
-                console.error(error);
-            }
-        }
-        fetchRecipe();
-    }, [id]);
+    const location = useLocation();
+    const recipe = location.state.recipe;
 
     return (
         <div>
-            {recipe ? (
-                <div>
-                    <h2>{recipe.title}</h2>
-                    <img src={recipe.image} alt={recipe.title} />
+            <h1>{recipe.title}</h1>
+            {recipe.analyzedInstructions.map((instruction, index) => (
+                <div key={index}>
+                    <h2>{instruction.name}</h2>
+                    <ol>
+                        {instruction.steps.map((step, index) => (
+                            <li key={index}>{step.step}</li>
+                        ))}
+                    </ol>
                 </div>
-            ) : (
-                <p>Loading...</p>
-            )}
+            ))}
         </div>
     )
 }

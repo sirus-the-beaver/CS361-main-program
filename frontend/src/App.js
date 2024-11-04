@@ -4,6 +4,7 @@ import SignIn from './components/SignIn';
 import Preferences from './components/Preferences';
 import IngredientInput from './components/IngredientInput';
 import RecipeList from './components/RecipeList';
+import RecipeDetail from './components/RecipeDetail';
 
 function App() {
   const navigate = useNavigate();
@@ -20,6 +21,7 @@ function App() {
         <Route path="/preferences" element={<Preferences />} />
         <Route path="/ingredient-input" element={<IngredientInput />} />
         <Route path="/recipes-list" element={<RecipeList />} />
+        <Route path="/recipe-detail" element={<RecipeDetail />} />
       </Routes>
     </div>
   );
