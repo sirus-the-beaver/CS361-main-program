@@ -1,12 +1,21 @@
 import React from 'react';
-import { useLocation } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
+import { FcPrevious } from 'react-icons/fc';
 
 const RecipeDetail = () => {
     const location = useLocation();
+    const navigate = useNavigate();
     const recipe = location.state.recipe;
 
     return (
         <div>
+            <button 
+                onClick={() => navigate(-1)} 
+                className="text-blue-500 underline mr-2"
+            >
+                <FcPrevious className="inline-block" size={48} />
+                Recipe List
+            </button>
             <h1 className='text-2xl font-semibold'>Recipe Detail</h1>
             <div className='space-y-4'>
                 {recipe.map((section, index) => (
