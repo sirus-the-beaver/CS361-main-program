@@ -7,6 +7,7 @@ const IngredientInput = () => {
     const navigate = useNavigate();
     const [ingredient, setIngredient] = useState('');
     const [ingredientsList, setIngredientsList] = useState([]);
+    const [ignorePantry, setIgnorePantry] = useState(false);
 
     const handleAddIngredient = () => {
         if (ingredient) {
@@ -19,7 +20,9 @@ const IngredientInput = () => {
         e.preventDefault();
         try {
             const response = await axios.post('http://localhost:5002/recipes', 
-                { ingredients: ingredientsList },
+                { ingredients: ingredientsList,
+                  ignorePantry
+                },
                 { headers: { 
                     Authorization: `Bearer ${localStorage.getItem('token')}`,
                     'Content-Type': 'application/json'
@@ -76,6 +79,15 @@ const IngredientInput = () => {
                         <li key={index} className="mb-2">{ingredient}</li>
                     ))}
                 </ul>
+                <label>
+                    <input 
+                        type='checkbox' 
+                        checked={ignorePantry}
+                        onChange={(e) => setIgnorePantry(e.target.checked)}
+                        className="mr-2"
+                    />
+                    Ignore common pantry ingredients such as water, flour, salt, etc.
+                </label>
                 <button 
                     type='submit' 
                     className="bg-green-500 text-white px-4 py-2 rounded-lg"
