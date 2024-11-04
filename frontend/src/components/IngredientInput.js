@@ -1,19 +1,37 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import { FcInfo, FcPrevious } from 'react-icons/fc';
+import { BiSolidEditAlt, BiSolidTrashAlt } from "react-icons/bi";
 
 const IngredientInput = () => {
     const navigate = useNavigate();
     const [ingredient, setIngredient] = useState('');
     const [ingredientsList, setIngredientsList] = useState([]);
     const [ignorePantry, setIgnorePantry] = useState(false);
+    const [editIndex, setEditIndex] = useState(null);
 
     const handleAddIngredient = () => {
         if (ingredient) {
-            setIngredientsList([...ingredientsList, ingredient]);
+            if (editIndex !== null) {
+                const newIngredientsList = [...ingredientsList];
+                newIngredientsList[editIndex] = ingredient;
+                setIngredientsList(newIngredientsList);
+                setEditIndex(null);
+            } else {
+                setIngredientsList([...ingredientsList, ingredient]);
+            }
             setIngredient('');
         }
+    }
+
+    const handleDeleteIngredient = (index) => {
+        setIngredientsList(ingredientsList.filter((_, i) => i !== index));
+    }
+
+    const handleEditIngredient = (index) => {
+        setIngredient(ingredientsList[index]);
+        setEditIndex(index);
     }
 
     const handleSubmit = async (e) => {
@@ -72,11 +90,29 @@ const IngredientInput = () => {
                     onClick={handleAddIngredient}
                     className="bg-blue-500 text-white px-4 py-2 rounded-lg mb-2"
                 >
-                    Add Ingredient
+                    {editIndex !== null ? 'Edit Ingredient' : 'Add Ingredient'}
                 </button>
                 <ul className="space-y-2 mb-4">
                     {ingredientsList.map((ingredient, index) => (
-                        <li key={index} className="text-grau-700 text-lg">{ingredient}</li>
+                        <li key={index} className="text-gray-700 text-lg flex items-center space-x-2">
+                            <span>{ingredient}</span>
+                            <div className="flex items-center space-x-2">
+                                <button
+                                    type='button'
+                                    className="text-blue-500"
+                                    onClick={() => handleEditIngredient(index)}
+                                >
+                                    <BiSolidEditAlt size={24} />
+                                </button>
+                                <button
+                                    type='button'
+                                    className="text-red-500"
+                                    onClick={() => handleDeleteIngredient(index)}
+                                >
+                                    <BiSolidTrashAlt size={24} />
+                                </button>
+                            </div>
+                        </li>
                     ))}
                 </ul>
                 <label className="flex items-center mb-4">
