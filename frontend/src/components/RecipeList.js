@@ -1,12 +1,9 @@
 import React from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
 
-const RecipeList = ({ recipes }) => {
-    const navigate = useNavigate();
-
-    const viewRecipe = (id) => {
-        navigate('/recipe/' + id);
-    }
+const RecipeList = () => {
+    const location = useLocation();
+    const recipes = location.state.recipes;
 
     return (
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
@@ -22,3 +19,5 @@ const RecipeList = ({ recipes }) => {
         </div>
     )
 }
+
+export default RecipeList;

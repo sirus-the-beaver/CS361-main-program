@@ -3,7 +3,7 @@ const axios = require('axios');
 
 const router = express.Router();
 
-router.post('/', (req, res) => {
+router.post('/', async (req, res) => {
     const { ingredients } = req.body;
     
     const recipes = async (ingredients) => {
@@ -15,13 +15,13 @@ router.post('/', (req, res) => {
                     apiKey: process.env.SPOONACULAR_API_KEY
                 }
             });
-            return response;
+            return response.data;
         } catch (error) {
             console.error(error);
             return null;
         }
     }
-    res.json(recipes(ingredients));
+    res.json(await recipes(ingredients));
 })
 
 module.exports = router;
