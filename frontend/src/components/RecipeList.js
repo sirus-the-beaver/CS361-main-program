@@ -30,6 +30,7 @@ const RecipeList = () => {
                 Ingredient Input
             </button>
             <h2 className="text-2xl font-bold mb-4">Recipes</h2>
+            <p className="mb-4">Please choose a recipe to view the equipment, ingredients, and steps.</p>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
                 {recipes.map(recipe => (
                     <div key={recipe.id} className="border rounded-lg p-4 shadow">
