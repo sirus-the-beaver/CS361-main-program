@@ -21,7 +21,7 @@ const IngredientInput = () => {
         try {
             const response = await axios.post('http://localhost:5002/recipes', 
                 { ingredients: ingredientsList,
-                  ignorePantry
+                  ignorePantry: ignorePantry
                 },
                 { headers: { 
                     Authorization: `Bearer ${localStorage.getItem('token')}`,

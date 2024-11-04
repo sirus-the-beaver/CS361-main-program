@@ -4,7 +4,7 @@ const axios = require('axios');
 const router = express.Router();
 
 router.post('/', async (req, res) => {
-    const { ingredients } = req.body;
+    const { ingredients, ignorePantry } = req.body;
     
     const recipes = async (ingredients) => {
         try {
@@ -12,6 +12,7 @@ router.post('/', async (req, res) => {
                 params: {
                     ingredients: ingredients.join(','),
                     ranking: 2,
+                    ignorePantry: ignorePantry,
                     apiKey: process.env.SPOONACULAR_API_KEY
                 }
             });
