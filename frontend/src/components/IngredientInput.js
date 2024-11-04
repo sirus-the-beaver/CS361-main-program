@@ -37,7 +37,7 @@ const IngredientInput = () => {
     }
 
     return (
-        <div>
+        <div className="p-4">
             <div className="flex items-center mb-4">
                 <button 
                     onClick={() => navigate(-1)} 
@@ -62,16 +62,26 @@ const IngredientInput = () => {
                     value={ingredient}
                     onChange={(e) => setIngredient(e.target.value)}
                     placeholder='Enter an ingredient'
+                    className="border border-gray-300 rounded-lg px-4 py-2 mb-2"
                 />
-                <button type='button' onClick={handleAddIngredient}>
+                <button 
+                    type='button' 
+                    onClick={handleAddIngredient}
+                    className="bg-blue-500 text-white px-4 py-2 rounded-lg mb-2"
+                >
                     Add Ingredient
                 </button>
                 <ul>
                     {ingredientsList.map((ingredient, index) => (
-                        <li key={index}>{ingredient}</li>
+                        <li key={index} className="mb-2">{ingredient}</li>
                     ))}
                 </ul>
-                <button type='submit'>Find Recipes</button>
+                <button 
+                    type='submit' 
+                    className="bg-green-500 text-white px-4 py-2 rounded-lg"
+                >
+                    Find Recipes
+                </button>
             </form>
         </div>
     );
