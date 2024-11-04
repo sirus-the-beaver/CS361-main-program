@@ -24,4 +24,22 @@ router.post('/', async (req, res) => {
     res.json(await recipes(ingredients));
 })
 
+router.get('/:id', async (req, res) => {
+    const { id } = req.params;
+
+    const recipe = async (id) => {
+        try {
+            const response = await axios.get(`https://api.spoonacular.com/recipes/${id}/analyzedInstructions`, {
+                params: {
+                    apiKey: process.env.SPOONACULAR_API_KEY,
+                    stepBreakdown: true
+                }
+            })
+        } catch (error) {
+            console.error(error);
+            return null;
+        }
+    }
+});
+
 module.exports = router;
