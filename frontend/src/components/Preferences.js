@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 
 const Preferences = () => {
@@ -6,7 +6,9 @@ const Preferences = () => {
 
     const savePreferences = async () => {
         try {
-            await axios.put("http://localhost:5002/users/preferences", { preferences }, {
+            const user = localStorage.getItem("user");
+            console.log(user);
+            await axios.put("http://localhost:5002/preferences", { preferences, email: user }, {
                 headers: {
                     Authorization: `Bearer ${localStorage.getItem("token")}`
                 }
@@ -16,6 +18,24 @@ const Preferences = () => {
             console.error(error);
         }
     };
+
+    const getPreferences = async () => {
+        try {
+            const user = localStorage.getItem("user");
+            const response = await axios.get(`http://localhost:5002/preferences`, { email: user }, {
+                headers: {
+                    Authorization: `Bearer ${localStorage.getItem("token")}`
+                }
+            });
+            setPreferences(response.data);
+        } catch (error) {
+            console.error(error);
+        }
+    };
+
+    useEffect(() => {
+        getPreferences();
+    }, []);
 
     return (
         <div>

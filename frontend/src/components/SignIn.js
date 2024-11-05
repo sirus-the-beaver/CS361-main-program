@@ -15,8 +15,11 @@ const SignIn = () => {
                 { email, password }
             );
 
+            console.log(response);
+
             if (response.status === 200) {
                 localStorage.setItem('token', response.data.token);
+                localStorage.setItem('user', JSON.stringify(response.data.user.email));
                 navigate('/ingredient-input');
             } else {
                 setError('An error occurred');
