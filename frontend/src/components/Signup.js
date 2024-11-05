@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { AuthContext } from '../context/AuthContext';
 
-const Signup = () => {
+const Signup = ({ setSignedIn }) => {
     const { login } = useContext(AuthContext);
     const navigate = useNavigate();
     const [formData, setFormData] = useState({ username: "", email: "", password: "", confirmPassword: "" });
@@ -19,6 +19,7 @@ const Signup = () => {
             const res = await axios.post("http://localhost:5002/users/register", formData);
             localStorage.setItem("token", res.data.token);
             localStorage.setItem("user", JSON.stringify(res.data.user.email));
+            setSignedIn(true);
             login(res.data);
             navigate("/ingredient-input");
         } catch (error) {

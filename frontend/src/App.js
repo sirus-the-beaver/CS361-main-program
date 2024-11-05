@@ -26,7 +26,7 @@ function App() {
           {signedIn ? (
             <nav>
               <button className="text-white text-lg font-medium mr-4" onClick={() => navigate('/preferences')}>Preferences</button>
-              <SignOut />
+              <SignOut setSignedIn={setSignedIn} />
             </nav>
           ) : (
             <nav>
@@ -37,8 +37,8 @@ function App() {
         </div>
       </header>
       <Routes>
-        <Route path="/signup" element={<Signup />} />
-        <Route path="/signin" element={<SignIn />} />
+        <Route path="/signup" element={<Signup setSignedIn={setSignedIn} />} />
+        <Route path="/signin" element={<SignIn setSignedIn={setSignedIn} />} />
         <Route path="/preferences" element={<Preferences />} />
         <Route path="/ingredient-input" element={<IngredientInput />} />
         <Route path="/recipes-list" element={<RecipeList />} />

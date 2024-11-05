@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 
-const SignIn = () => {
+const SignIn = ({ setSignedIn }) => {
     const navigate = useNavigate();
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
@@ -20,6 +20,7 @@ const SignIn = () => {
             if (response.status === 200) {
                 localStorage.setItem('token', response.data.token);
                 localStorage.setItem('user', JSON.stringify(response.data.user.email));
+                setSignedIn(true);
                 navigate('/ingredient-input');
             } else {
                 setError('An error occurred');

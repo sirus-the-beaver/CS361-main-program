@@ -1,12 +1,13 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 
-const SignOut = () => {
+const SignOut = ({ setSignedIn }) => {
     const navigate = useNavigate();
 
     const handleSignOut = () => {
         localStorage.removeItem('token');
         localStorage.removeItem('user');
+        setSignedIn(false);
         navigate('/signin', { replace: true });
     };
 
