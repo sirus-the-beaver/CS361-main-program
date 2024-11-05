@@ -72,7 +72,7 @@ const IngredientInput = () => {
                         className="text-xl cursor-pointer"
                         title="Going back will erase these results"
                     />
-                    <span className="absolute bottom-full mb-1 w-48 p-2 text-sm text-white bg-gray-700 rounded-lg shadow-lg opacity-0 transition-opacity duration-200 hover:opacity-100">
+                    <span className="bottom-full mb-1 w-48 p-2 text-sm text-white bg-gray-700 rounded-lg shadow-lg opacity-0 transition-opacity duration-200 hover:opacity-100">
                         Going back will erase inputted ingredients
                     </span>
                 </div>
