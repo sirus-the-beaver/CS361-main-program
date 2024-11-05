@@ -20,6 +20,7 @@ router.put('/', async (req, res) => {
 
     try {
         const user = await User.findOne({ email });
+        console.log(user);
         user.preferences = preferences;
         await user.save();
 
