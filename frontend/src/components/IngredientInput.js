@@ -122,7 +122,7 @@ const IngredientInput = () => {
                         onChange={(e) => setIgnorePantry(e.target.checked)}
                         className="mr-2 h-5 w-5 text-green-500 focus:ring-green-400 border-gray-300 rounded"
                     />
-                    <span className="text-gray-600">Ignore common pantry ingredients such as water, flour, salt, etc.</span>
+                    <span className="text-gray-600">Ignore common pantry ingredients (Using this feature may lead to different recipe results as this will automaticllay include common ingredients such as flour, water, sugar, etc.)</span>
                 </label>
                 <button 
                     type='submit' 
