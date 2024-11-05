@@ -25,13 +25,11 @@ function App() {
         <div className="container mx-auto flex justify-between items-center px-4">
           {signedIn ? (
             <nav>
-              <button className="text-white text-lg font-medium mr-4" onClick={() => navigate('/preferences')}>Preferences</button>
+              {/* <button className="text-white text-lg font-medium mr-4" onClick={() => navigate('/preferences')}>Preferences</button> */}
               <SignOut setSignedIn={setSignedIn} />
             </nav>
           ) : (
             <nav>
-              <button className="text-white text-lg font-medium mr-4" onClick={() => navigate('/signup')}>Sign Up</button>
-              <button className="text-white text-lg font-medium" onClick={() => navigate('/signin')}>Sign In</button>
             </nav>
           )}
         </div>
