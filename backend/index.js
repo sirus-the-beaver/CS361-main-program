@@ -15,13 +15,11 @@ app.use(express.json());
 
 const userRoutes = require('./routes/userRoutes');
 const recipeRoutes = require('./routes/recipeRoutes');
-const preferencesRoutes = require('./routes/preferencesRoutes');
 const notesRoutes = require('./routes/notesRoutes');
 
 app.use('/users', userRoutes);
 
 app.use(authMiddleware);
-app.use('/preferences', preferencesRoutes);
 app.use('/recipes', recipeRoutes);
 app.use('/notes', notesRoutes);
 
