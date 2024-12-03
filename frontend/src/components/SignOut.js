@@ -7,6 +7,7 @@ const SignOut = ({ setSignedIn }) => {
     const handleSignOut = () => {
         localStorage.removeItem('token');
         localStorage.removeItem('user');
+        localStorage.removeItem('userId');
         setSignedIn(false);
         navigate('/signin', { replace: true });
     };
