@@ -27,6 +27,7 @@ function App() {
             <nav>
               {/* <button className="text-white text-lg font-medium mr-4" onClick={() => navigate('/preferences')}>Preferences</button> */}
               <SignOut setSignedIn={setSignedIn} />
+              <button className="text-white text-lg font-medium ml-4" onClick={() => navigate('/preferences')}>Preferences</button>
             </nav>
           ) : (
             <nav>
