@@ -20,6 +20,7 @@ const SignIn = ({ setSignedIn }) => {
             if (response.status === 200) {
                 localStorage.setItem('token', response.data.token);
                 localStorage.setItem('user', JSON.stringify(response.data.user.email));
+                localStorage.setItem('userId', response.data.user.id);
                 setSignedIn(true);
                 navigate('/ingredient-input');
             } else {
