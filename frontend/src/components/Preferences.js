@@ -47,46 +47,48 @@ const Preferences = () => {
     };
 
     return (
-        <div>
-            <h2>Manage Your Preferences</h2>
+        <div className="container mx-auto p-4">
+            <h2 className="text-2xl font-bold mb-4">Manage Your Preferences</h2>
 
             {loading ? (
                 <p>Loading...</p>
             ): (
                 <>
                 {savedPreferences && (
-                    <div>
-                        <h4>Saved Preferences:</h4>
-                        <p>Dietary Restrictions: {savedPreferences.dietaryRestrictions.join(', ') || "None"}</p>
-                        <p>Allergies: {savedPreferences.allergies.join(', ') || "None"}</p>
+                    <div className="mb-4">
+                        <h4 className="text-lg font-bold">Saved Preferences:</h4>
+                        <p className="mb-2">Dietary Restrictions: {savedPreferences.dietaryRestrictions.join(', ') || "None"}</p>
+                        <p className="mb-2">Allergies: {savedPreferences.allergies.join(', ') || "None"}</p>
                     </div>
                 )}
 
-                <div>
-                    <h4>Set Dietary Restrictions</h4>
+                <div className="mb-4">
+                    <h4 className="text-lg font-bold">Set Dietary Restrictions</h4>
                     <input
                         type="text"
                         value={dietaryRestrictions.join(', ')}
                         placeholder='e.g. vegetarian, vegan, gluten free'
                         onChange={(e) => setDietaryRestrictions(e.target.value.split(',').map(item => item.trim()))}
+                        className="border border-gray-300 rounded p-2 w-full"
                     />
                 </div>
 
-                <div>
-                    <h4>Set Allergies</h4>
+                <div className="mb-4">
+                    <h4 className="text-lg font-bold">Set Allergies</h4>
                     <input
                         type="text"
                         value={allergies.join(', ')}
                         placeholder='e.g. peanuts, shellfish, dairy'
                         onChange={(e) => setAllergies(e.target.value.split(',').map(item => item.trim()))}
+                        className="border border-gray-300 rounded p-2 w-full"
                     />
                 </div>
 
-                <button onClick={handleSavePreferences}>Save Preferences</button>
+                <button onClick={handleSavePreferences} className="bg-blue-500 text-white py-2 px-4 rounded">Save Preferences</button>
                 </>
             )}
 
-            {message && <p>{message}</p>}
+            {message && <p className="mt-4">{message}</p>}
         </div>
     );
 };
