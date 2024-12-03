@@ -7,13 +7,13 @@ const Preferences = () => {
     const [savedPreferences, setSavedPreferences] = useState(null);
     const [loading, setLoading] = useState(false);
     const [message, setMessage] = useState("");
-    const user = localStorage.getItem("user");
+    const userId = localStorage.getItem("userId");
 
     useEffect(() => {
         const fetchPreferences = async () => {
             try {
                 setLoading(true);
-                const response = await axios.get(`http://localhost:5002/preferences/${user}`);
+                const response = await axios.get(`http://localhost:5002/preferences/${userId}`);
                 setSavedPreferences(response.data);
                 setDietaryRestrictions(response.data.dietaryRestrictions || []);
                 setAllergies(response.data.allergies || []);
@@ -26,14 +26,14 @@ const Preferences = () => {
         };
 
         fetchPreferences();
-    }, [user]);
+    }, [userId]);
 
 
     const handleSavePreferences = async () => {
         try {
             setLoading(true);
             const response = await axios.post("http://localhost:5002/preferences", {
-                user,
+                userId,
                 dietaryRestrictions,
                 allergies
             });
