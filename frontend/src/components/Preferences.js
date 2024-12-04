@@ -9,11 +9,39 @@ const Preferences = () => {
     const [message, setMessage] = useState("");
     const userId = localStorage.getItem("userId");
 
+    const availableDietaryRestrictions = [
+        "gluten free",
+        "ketogenic",
+        "vegetarian",
+        "lacto-vegetarian",
+        "ovo-vegetarian",
+        "vegan",
+        "pescetarian",
+        "paleo",
+        "primal",
+        "whole30"
+    ];
+
+    const availableAllergies = [
+        "dairy",
+        "egg",
+        "gluten",
+        "grain",
+        "peanut",
+        "seafood",
+        "sesame",
+        "shellfish",
+        "soy",
+        "sulfite",
+        "tree nut",
+        "wheat"
+    ]
+
     useEffect(() => {
         const fetchPreferences = async () => {
             try {
                 setLoading(true);
-                const response = await axios.get(`http://localhost:5006/preferences/${userId}`);
+                const response = await axios.get(`http://localhost:5007/preferences/${userId}`);
                 setSavedPreferences(response.data);
                 setDietaryRestrictions(response.data.dietaryRestrictions || []);
                 setAllergies(response.data.allergies || []);
@@ -28,11 +56,19 @@ const Preferences = () => {
         fetchPreferences();
     }, [userId]);
 
+    const handleCheckboxChange = (item, state, setState) => {
+        if (state.includes(item)) {
+            setState(state.filter(i => i !== item));
+        } else {
+            setState([...state, item]);
+        }
+    };
+
 
     const handleSavePreferences = async () => {
         try {
             setLoading(true);
-            const response = await axios.post("http://localhost:5006/preferences", {
+            const response = await axios.post("http://localhost:5007/preferences", {
                 userId,
                 dietaryRestrictions,
                 allergies
@@ -64,24 +100,36 @@ const Preferences = () => {
 
                 <div className="mb-4">
                     <h4 className="text-lg font-bold">Set Dietary Restrictions</h4>
-                    <input
-                        type="text"
-                        value={dietaryRestrictions.join(', ')}
-                        placeholder='e.g. vegetarian, vegan, gluten free'
-                        onChange={(e) => setDietaryRestrictions(e.target.value.split(',').map(item => item.trim()))}
-                        className="border border-gray-300 rounded p-2 w-full"
-                    />
+                    <div className="grid grid-cols-2 gap-2">
+                        {availableDietaryRestrictions.map(item => (
+                            <label key={item} className="flex items-center">
+                                <input
+                                    type="checkbox"
+                                    checked={dietaryRestrictions.includes(item)}
+                                    onChange={() => handleCheckboxChange(item, dietaryRestrictions, setDietaryRestrictions)}
+                                    className="mr-2"
+                                />
+                                {item}
+                            </label>
+                        ))}
+                    </div>
                 </div>
 
                 <div className="mb-4">
                     <h4 className="text-lg font-bold">Set Allergies</h4>
-                    <input
-                        type="text"
-                        value={allergies.join(', ')}
-                        placeholder='e.g. peanuts, shellfish, dairy'
-                        onChange={(e) => setAllergies(e.target.value.split(',').map(item => item.trim()))}
-                        className="border border-gray-300 rounded p-2 w-full"
-                    />
+                    <div className="grid grid-cols-2 gap-2">
+                        {availableAllergies.map(item => (
+                            <label key={item} className="flex items-center">
+                                <input
+                                    type="checkbox"
+                                    checked={allergies.includes(item)}
+                                    onChange={() => handleCheckboxChange(item, allergies, setAllergies)}
+                                    className="mr-2"
+                                />
+                                {item}
+                            </label>
+                        ))}
+                    </div>
                 </div>
 
                 <button onClick={handleSavePreferences} className="bg-blue-500 text-white py-2 px-4 rounded">Save Preferences</button>

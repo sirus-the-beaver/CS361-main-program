@@ -38,14 +38,10 @@ const IngredientInput = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            const response = await axios.post('http://localhost:5006/recommendations',
-                {
-                    params: {
-                        userId: userId
-                    }
-                },
+            const response = await axios.post('http://localhost:5007/recommendations',
                 { ingredients: ingredientsList,
-                  ignorePantry: ignorePantry
+                  ignorePantry: ignorePantry,
+                  userId: userId
                 },
                 { headers: { 
                     Authorization: `Bearer ${localStorage.getItem('token')}`,
