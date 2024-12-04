@@ -1,7 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import { useLocation, useNavigate } from 'react-router-dom';
+import { FcPrevious } from 'react-icons/fc';
 
 const Preferences = () => {
+    const navigate = useNavigate();
     const [dietaryRestrictions, setDietaryRestrictions] = useState([]);
     const [allergies, setAllergies] = useState([]);
     const [savedPreferences, setSavedPreferences] = useState(null);
@@ -84,6 +87,13 @@ const Preferences = () => {
 
     return (
         <div className="container mx-auto p-4">
+            <button
+                onClick={() => navigate(-1)}
+                className="text-blue-500 underline mr-2 hover:text-blue-700 transition duration-300"
+            >
+                <FcPrevious className="inline-block" size={48} />
+                Back
+            </button>
             <h2 className="text-2xl font-bold mb-4">Manage Your Preferences</h2>
 
             {loading ? (
