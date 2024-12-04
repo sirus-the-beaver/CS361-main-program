@@ -9,6 +9,18 @@ const RecipeDetail = () => {
     const recipe = location.state.recipe;
     const [notes, setNotes] = useState([]);
     const [newNote, setNewNote] = useState('');
+    const userId = localStorage.getItem('userId');
+
+    const handleExcludeRecipe = async () => {
+        try {
+            const response = await axios.post('http://localhost:5011/exclude-recipe', {
+                userId,
+                recipeId: recipe.id
+            });
+        } catch (error) {
+            console.error(error);
+        }
+    };
 
     const handleAddNote = async () => {
         const response = await axios.post('http://localhost:5002/notes', {
@@ -53,6 +65,12 @@ const RecipeDetail = () => {
                 Recipe List
             </button>
             <h1 className="text-3xl font-extrabold mb-6 text-gray-800">Recipe Detail</h1>
+            <button
+                onClick={handleExcludeRecipe}
+                className="bg-red-500 text-white px-4 py-2 rounded-lg"
+            >
+                Exclude Recipe from Recommendations
+            </button>
             <div className="bg-white p-6 rounded-lg shadow-lg mb-6">
                 <h2 className="text-2xl font-semibold text-gray-700 mb-4">Notes</h2>
                 <div className="flex items-center mb-4">

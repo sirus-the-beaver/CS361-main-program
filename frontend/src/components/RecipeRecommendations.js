@@ -13,7 +13,8 @@ const RecipeRecommendations = () => {
         const fetchRecipes = async () => {
             try {
                 setLoading(true);
-                const response = await axios.get(`http://localhost:5008/recipes/${userId}`);
+                const response = await axios.get(`http://localhost:5010/recipes/${userId}`);
+                console.log(response.data);
                 setRecipes(response.data);
                 setLoading(false);
             } catch (error) {
