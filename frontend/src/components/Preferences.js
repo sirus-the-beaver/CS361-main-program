@@ -108,6 +108,11 @@ const Preferences = () => {
                     </div>
                 )}
 
+                <div>
+                    <h4 className="text-lg font-bold">View Recipe Recommendations Based On Your Dietary Restrictions and Allergies</h4>
+                    <button onClick={() => navigate('/recipe-recommendations')} className="bg-blue-500 text-white py-2 px-4 rounded">View Recommendations</button>
+                </div>
+
                 <div className="mb-4">
                     <h4 className="text-lg font-bold">Set Dietary Restrictions</h4>
                     <div className="grid grid-cols-2 gap-2">
