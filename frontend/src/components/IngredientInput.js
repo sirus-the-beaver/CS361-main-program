@@ -10,6 +10,7 @@ const IngredientInput = () => {
     const [ingredientsList, setIngredientsList] = useState([]);
     const [ignorePantry, setIgnorePantry] = useState(false);
     const [editIndex, setEditIndex] = useState(null);
+    const userId = localStorage.getItem('userId');
 
     const handleAddIngredient = () => {
         if (ingredient) {
@@ -37,7 +38,12 @@ const IngredientInput = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            const response = await axios.post('http://localhost:5002/recipes', 
+            const response = await axios.post('http://localhost:5006/recommendations',
+                {
+                    params: {
+                        userId: userId
+                    }
+                },
                 { ingredients: ingredientsList,
                   ignorePantry: ignorePantry
                 },
