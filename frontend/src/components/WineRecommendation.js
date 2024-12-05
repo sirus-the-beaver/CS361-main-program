@@ -32,18 +32,18 @@ const WineRecommendation = () => {
     };
 
     return (
-        <div className="max-w-lg mx-auto mt-8 p-4 bg-white shadow-lg rounded-lg">
-            <h1 className="text-2xl font-semibold text-gray-800 mb-4">Get Wine Recommendation</h1>
+        <div className="max-w-lg mx-auto mt-8 p-4 sm:p-6 lg:p-8 bg-white shadow-lg rounded-lg">
+            <h1 className="text-2xl sm:text-3xl font-semibold text-gray-800 mb-4">Get Wine Recommendation</h1>
             <input
                 type="text"
                 placeholder="Enter a dish, cuisine, or ingredient"
                 value={food}
                 onChange={(e) => setFood(e.target.value)}
-                className="w-full p-2 border rounded-lg mb-4"
+                className="w-full p-2 sm:p-3 border rounded-lg mb-4"
             />
             <button
                 onClick={fetchRecommendations}
-                className="w-full p-2 bg-blue-500 text-white rounded hover:bg-blue-600 transition duration-300"
+                className="w-full p-2 sm:p-3 bg-blue-500 text-white rounded hover:bg-blue-600 transition duration-300"
                 disabled={loading}
             >
                 Get Recommendation
@@ -52,7 +52,7 @@ const WineRecommendation = () => {
             {error && <p className="text-red-500 mt-4">{error}</p>}
             {recommendation && (
                 <div className="mt-4">
-                    <h2 className="text-xl font-semibold text-gray-800 mb-2">Wine Recommendation</h2>
+                    <h2 className="text-xl sm:text-2xl font-semibold text-gray-800 mb-2">Wine Recommendation</h2>
                     <p className="text-gray-800 mb-2">
                         <span className="font-semibold">Wines:</span> {recommendation.pairedWines.join(', ')}
                     </p>
@@ -61,10 +61,10 @@ const WineRecommendation = () => {
                     </p>
                     {recommendation.productMatches.length > 0 && (
                         <div>
-                            <h3 className="text-lg font-semibold text-gray-800 mb-2">Product Matches</h3>
+                            <h3 className="text-lg sm:text-xl font-semibold text-gray-800 mb-2">Product Matches</h3>
                             {recommendation.productMatches.map((product) => (
-                                <div key={product.id} className="border p-4 mb-4 rounded-lg">
-                                    <h4 className="text-xl font-semibold text-gray-800 mb-2">{product.title}</h4>
+                                <div key={product.id} className="border p-4 sm:p-6 mb-4 rounded-lg">
+                                    <h4 className="text-xl sm:text-2xl font-semibold text-gray-800 mb-2">{product.title}</h4>
                                     <p className="text-gray-800 mb-2">
                                         <span className="font-semibold">Price:</span> {product.price}
                                     </p>
