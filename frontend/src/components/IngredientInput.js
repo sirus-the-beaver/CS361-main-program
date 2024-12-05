@@ -38,7 +38,7 @@ const IngredientInput = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            const response = await axios.post('http://localhost:5007/recommendations',
+            const response = await axios.post('http://localhost:5012/recommendations',
                 { ingredients: ingredientsList,
                   ignorePantry: ignorePantry,
                   userId: userId

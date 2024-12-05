@@ -44,7 +44,7 @@ const Preferences = () => {
         const fetchPreferences = async () => {
             try {
                 setLoading(true);
-                const response = await axios.get(`http://localhost:5007/preferences/${userId}`);
+                const response = await axios.get(`http://localhost:5012/preferences/${userId}`);
                 setSavedPreferences(response.data);
                 setDietaryRestrictions(response.data.dietaryRestrictions || []);
                 setAllergies(response.data.allergies || []);
@@ -71,7 +71,7 @@ const Preferences = () => {
     const handleSavePreferences = async () => {
         try {
             setLoading(true);
-            const response = await axios.post("http://localhost:5007/preferences", {
+            const response = await axios.post("http://localhost:5012/preferences", {
                 userId,
                 dietaryRestrictions,
                 allergies
