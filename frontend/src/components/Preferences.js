@@ -86,18 +86,18 @@ const Preferences = () => {
     };
 
     return (
-        <div className="container mx-auto p-4">
+        <div className="container mx-auto p-4 max-w-md sm:max-w-lg md:max-w-xl lg:max-w-2xl">
             <button
                 onClick={() => navigate(-1)}
-                className="text-blue-500 underline mr-2 hover:text-blue-700 transition duration-300"
+                className="text-blue-500 underline mr-2 hover:text-blue-700 transition duration-300 flex items-center"
             >
-                <FcPrevious className="inline-block" size={48} />
-                Back
+                <FcPrevious className="inline-block" size={24} />
+                <span className="ml-2">Back</span>
             </button>
-            <h2 className="text-2xl font-bold mb-4">Manage Your Preferences</h2>
+            <h2 className="text-2xl font-bold mb-4 text-center sm:text-left">Manage Your Preferences</h2>
 
             {loading ? (
-                <p>Loading...</p>
+                <p className="text-center">Loading...</p>
             ): (
                 <>
                 {savedPreferences && (
@@ -109,13 +109,13 @@ const Preferences = () => {
                 )}
 
                 <div>
-                    <h4 className="text-lg font-bold">View Recipe Recommendations Based On Your Dietary Restrictions and Allergies</h4>
-                    <button onClick={() => navigate('/recipe-recommendations')} className="bg-blue-500 text-white py-2 px-4 rounded">View Recommendations</button>
+                    <h4 className="text-lg font-bold mb-2 text-center sm:text-left">View Recipe Recommendations Based On Your Dietary Restrictions and Allergies</h4>
+                    <button onClick={() => navigate('/recipe-recommendations')} className="bg-blue-500 text-white py-2 px-4 rounded w-full sm:w-auto">View Recommendations</button>
                 </div>
 
                 <div className="mb-4">
-                    <h4 className="text-lg font-bold">Set Dietary Restrictions</h4>
-                    <div className="grid grid-cols-2 gap-2">
+                    <h4 className="text-lg font-bold mb-2 text-center sm:text-left">Set Dietary Restrictions</h4>
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
                         {availableDietaryRestrictions.map(item => (
                             <label key={item} className="flex items-center">
                                 <input
@@ -131,8 +131,8 @@ const Preferences = () => {
                 </div>
 
                 <div className="mb-4">
-                    <h4 className="text-lg font-bold">Set Allergies</h4>
-                    <div className="grid grid-cols-2 gap-2">
+                    <h4 className="text-lg font-bold mb-2 text-center sm:text-left">Set Allergies</h4>
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
                         {availableAllergies.map(item => (
                             <label key={item} className="flex items-center">
                                 <input
@@ -147,11 +147,11 @@ const Preferences = () => {
                     </div>
                 </div>
 
-                <button onClick={handleSavePreferences} className="bg-blue-500 text-white py-2 px-4 rounded">Save Preferences</button>
+                <button onClick={handleSavePreferences} className="bg-blue-500 text-white py-2 px-4 rounded w-full sm:w-auto">Save Preferences</button>
                 </>
             )}
 
-            {message && <p className="mt-4">{message}</p>}
+            {message && <p className="mt-4 text-center sm:text-left">{message}</p>}
         </div>
     );
 };
