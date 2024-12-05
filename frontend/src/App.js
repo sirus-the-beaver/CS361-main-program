@@ -9,6 +9,7 @@ import RecipeList from './components/RecipeList';
 import RecipeDetail from './components/RecipeDetail';
 import RecipeRecommendations from './components/RecipeRecommendations';
 import WineRecommendation from './components/WineRecommendation';
+import DishRecommendation from './components/DishRecommendation';
 
 function App() {
   const navigate = useNavigate();
@@ -31,6 +32,7 @@ function App() {
               <button className="text-white text-lg font-medium ml-4" onClick={() => navigate('/preferences')}>Preferences</button>
               <button className="text-white text-lg font-medium ml-4" onClick={() => navigate('/ingredient-input')}>Ingredient Input</button>
               <button className="text-white text-lg font-medium ml-4" onClick={() => navigate('/wine-recommendation')}>Wine Recommendations</button>
+              <button className="text-white text-lg font-medium ml-4" onClick={() => navigate('/dish-recommendation')}>Dish Recommendations Based on Wine</button>
             </nav>
           ) : (
             <nav>
@@ -47,6 +49,7 @@ function App() {
         <Route path="/recipe-detail" element={<RecipeDetail />} />
         <Route path="/recipe-recommendations" element={<RecipeRecommendations />} />
         <Route path="/wine-recommendation" element={<WineRecommendation />} />
+        <Route path="/dish-recommendation" element={<DishRecommendation />} />
       </Routes>
     </div>
   );
