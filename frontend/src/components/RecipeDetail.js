@@ -39,21 +39,21 @@ const RecipeDetail = () => {
         setNewNote('');
     }
 
-    // const fetchNotes = async () => {
-    //     const response = await axios.get(`http://localhost:5002/notes`, {
-    //         headers: {
-    //             Authorization: `Bearer ${localStorage.getItem('token')}`
-    //         }
-    //     });
+    const fetchNotes = async () => {
+        const response = await axios.get(`http://localhost:5002/notes`, {
+            headers: {
+                Authorization: `Bearer ${localStorage.getItem('token')}`
+            }
+        });
 
-    //     const data = await response.data;
-    //     console.log(data.notes);
-    //     setNotes(data.notes);
-    // }
+        const data = await response.data;
+        console.log(data.notes);
+        setNotes(data.notes);
+    }
 
-    // useEffect(() => {
-    //     fetchNotes();
-    // }, []);
+    useEffect(() => {
+        fetchNotes();
+    }, []);
 
     return (
         <div className="p-4 sm:p-6 bg-gray-100 min-h-screen">

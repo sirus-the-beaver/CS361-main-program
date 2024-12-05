@@ -5,8 +5,6 @@ import axios from 'axios';
 const RecipeRecommendations = () => {
     const navigate = useNavigate();
     const [recipes, setRecipes] = useState([]);
-    const [loading, setLoading] = useState(false);
-    const [error, setError] = useState(null);
     const userId = localStorage.getItem('userId');
 
     useEffect(() => {
