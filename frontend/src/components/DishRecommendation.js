@@ -32,18 +32,18 @@ const DishRecommendation = () => {
     };
 
     return (
-        <div className="max-w-lg mx-auto mt-8 p-4 bg-white shadow-lg rounded-lg">
-            <h1 className="text-2xl font-semibold text-gray-800 mb-4">Get Dish Recommendation Based on Wine Type</h1>
+        <div className="max-w-lg mx-auto mt-8 p-4 bg-white shadow-lg rounded-lg sm:max-w-md md:max-w-lg lg:max-w-xl xl:max-w-2xl">
+            <h1 className="text-2xl font-semibold text-gray-800 mb-4 text-center sm:text-left">Get Dish Recommendation Based on Wine Type</h1>
             <input
                 type="text"
                 placeholder="Enter a wine type (e.g. Merlot, Chardonnay, etc.)"
                 value={wine}
                 onChange={(e) => setWine(e.target.value)}
-                className="w-full p-2 border rounded-lg mb-4"
+                className="w-full p-2 border rounded-lg mb-4 focus:outline-none focus:ring-2 focus:ring-blue-500"
             />
             <button
                 onClick={fetchRecommendations}
-                className="w-full p-2 bg-blue-500 text-white rounded hover:bg-blue-600 transition duration-300"
+                className="w-full p-2 bg-blue-500 text-white rounded hover:bg-blue-600 transition duration-300 disabled:opacity-50"
                 disabled={loading}
             >
                 Get Recommendation
