@@ -31,22 +31,22 @@ const SignIn = ({ setSignedIn }) => {
         }
     };
     return (
-        <div className="flex flex-col items-center justify-center min-h-screen bg-gray-100">
+        <div className="flex flex-col items-center justify-center min-h-screen bg-gray-100 px-4 sm:px-6 lg:px-8">
             <div className="max-w-md w-full px-6 py-8 bg-white shadow-md rounded-md">
-                <h2 className="text-2xl font-bold mb-4">Sign In</h2>
+                <h2 className="text-2xl sm:text-3xl font-bold mb-4">Sign In</h2>
                 {error && <p className="text-red-500 mb-4">{error}</p>}
                 <form onSubmit={handleSubmit} className="space-y-4">
                     <div>
-                        <label className="block mb-1">Email</label>
+                        <label className="block mb-1 text-sm sm:text-base">Email</label>
                         <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} required className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" />
                     </div>
                     <div>
-                        <label className="block mb-1">Password</label>
+                        <label className="block mb-1 text-sm sm:text-base">Password</label>
                         <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} required className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" />
                     </div>
-                    <button type="submit" className="w-full py-2 px-4 bg-blue-500 text-white rounded-md hover:bg-blue-600">Sign In</button>
+                    <button type="submit" className="w-full py-2 px-4 bg-blue-500 text-white rounded-md hover:bg-blue-600 transition duration-300">Sign In</button>
                 </form>
-                <p className="mt-4">Don't have an account? <a href="/signup" className="text-blue-500">Sign up</a></p>
+                <p className="mt-4 text-sm sm:text-base">Don't have an account? <a href="/signup" className="text-blue-500 hover:underline">Sign up</a></p>
             </div>
         </div>
     )
