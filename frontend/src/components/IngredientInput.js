@@ -60,7 +60,7 @@ const IngredientInput = () => {
     }
 
     return (
-        <div className="p-4">
+        <div className="p-4 max-w-md mx-auto sm:max-w-lg md:max-w-xl lg:max-w-2xl">
             <div className="flex items-center mb-4">
                 <button 
                     onClick={() => navigate(-1)} 
@@ -74,30 +74,30 @@ const IngredientInput = () => {
                         className="text-xl cursor-pointer"
                         title="Going back will erase these results"
                     />
-                    <span className="bottom-full mb-1 w-48 p-2 text-sm text-white bg-gray-700 rounded-lg shadow-lg opacity-0 transition-opacity duration-200 hover:opacity-100">
+                    <span className="absolute bottom-full mb-1 w-48 p-2 text-sm text-white bg-gray-700 rounded-lg shadow-lg opacity-0 transition-opacity duration-200 hover:opacity-100">
                         Going back will erase inputted ingredients
                     </span>
                 </div>
             </div>
-            <form onSubmit={handleSubmit}>
+            <form onSubmit={handleSubmit} className="space-y-4">
                 <input
                     type='text'
                     value={ingredient}
                     onChange={(e) => setIngredient(e.target.value)}
                     placeholder='Enter an ingredient'
-                    className="border border-gray-300 rounded-lg px-4 py-2 mb-2"
+                    className="w-full p-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400"
                 />
                 <button 
                     type='button' 
                     onClick={handleAddIngredient}
-                    className="bg-blue-500 text-white px-4 py-2 rounded-lg mb-2"
+                    className="w-full p-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition duration-300"
                 >
                     {editIndex !== null ? 'Edit Ingredient' : 'Add Ingredient'}
                 </button>
                 <ul className="space-y-2 mb-4">
                     {ingredientsList.map((ingredient, index) => (
-                        <li key={index} className="text-gray-700 text-lg flex items-center space-x-2">
-                            <span>{ingredient}</span>
+                        <li key={index} className="text-gray-700 text-lg flex items-center justify-between space-x-2">
+                            <span className="flex-1">{ingredient}</span>
                             <div className="flex items-center space-x-2">
                                 <button
                                     type='button'
@@ -117,18 +117,18 @@ const IngredientInput = () => {
                         </li>
                     ))}
                 </ul>
-                <label className="flex items-center mb-4">
+                <label className="flex flex-col sm:flex-row items-start sm:items-center mb-4">
                     <input 
                         type='checkbox' 
                         checked={ignorePantry}
                         onChange={(e) => setIgnorePantry(e.target.checked)}
                         className="mr-2 h-5 w-5 text-green-500 focus:ring-green-400 border-gray-300 rounded"
                     />
-                    <span className="text-gray-600">Ignore common pantry ingredients (Using this feature may lead to different recipe results as this will automaticllay include common ingredients such as flour, water, sugar, etc.)</span>
+                    <span className="text-gray-600 mt-2 sm:mt-0">Ignore common pantry ingredients (Using this feature may lead to different recipe results as this will automaticllay include common ingredients such as flour, water, sugar, etc.)</span>
                 </label>
                 <button 
                     type='submit' 
-                    className="bg-green-500 text-white px-4 py-2 rounded-lg hpver:bg-green-600 focus:outline-none focus:ring-2 focus:ring-green-400 transition duration-300"
+                    className="w-full bg-green-500 text-white px-4 py-2 rounded-lg hpver:bg-green-600 focus:outline-none focus:ring-2 focus:ring-green-400 transition duration-300"
                 >
                     Find Recipes
                 </button>
