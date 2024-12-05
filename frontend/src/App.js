@@ -25,17 +25,17 @@ function App() {
   return (
     <div>
       <header className="bg-gray-800 py-4">
-        <div className="container mx-auto flex justify-between items-center px-4">
+        <div className="container mx-auto flex flex-wrap justify-between items-center px-4">
           {signedIn ? (
-            <nav>
+            <nav className="w-full sm:w-auto">
               <SignOut setSignedIn={setSignedIn} />
-              <button className="text-white text-lg font-medium ml-4" onClick={() => navigate('/preferences')}>Preferences</button>
-              <button className="text-white text-lg font-medium ml-4" onClick={() => navigate('/ingredient-input')}>Ingredient Input</button>
-              <button className="text-white text-lg font-medium ml-4" onClick={() => navigate('/wine-recommendation')}>Wine Recommendations</button>
-              <button className="text-white text-lg font-medium ml-4" onClick={() => navigate('/dish-recommendation')}>Dish Recommendations Based on Wine</button>
+              <button className="text-white text-base sm:text-lg ml-0 sm:ml-4 mt-2 sm:mt-0 font-medium" onClick={() => navigate('/preferences')}>Preferences</button>
+              <button className="text-white text-base sm:text-lg ml-0 sm:ml-4 mt-2 sm:mt-0 font-medium" onClick={() => navigate('/ingredient-input')}>Ingredient Input</button>
+              <button className="text-white text-base sm:text-lg ml-0 sm:ml-4 mt-2 sm:mt-0 font-medium" onClick={() => navigate('/wine-recommendation')}>Wine Recommendations</button>
+              <button className="text-white text-base sm:text-lg ml-0 sm:ml-4 mt-2 sm:mt-0 font-medium" onClick={() => navigate('/dish-recommendation')}>Dish Recommendations Based on Wine</button>
             </nav>
           ) : (
-            <nav>
+            <nav className="w-full sm:w-auto">
             </nav>
           )}
         </div>
