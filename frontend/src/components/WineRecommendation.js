@@ -18,7 +18,7 @@ const WineRecommendation = () => {
         setRecommendation(null);
 
         try {
-            const response = await axios.post('http://localhost:5015/wine-recommendation', {
+            const response = await axios.post('http://localhost:5016/wine-recommendation', {
                 food: food
             });
 
@@ -74,7 +74,7 @@ const WineRecommendation = () => {
                                     </p>
                                     }
                                     <p className="text-gray-800 mb-2">
-                                        <span className="font-semibold">Average Rating:</span> {product.averageRating}
+                                        <span className="font-semibold">Average Rating:</span> {product.averageRating.toFixed(2)}
                                     </p>
                                     <a
                                         href={product.link}

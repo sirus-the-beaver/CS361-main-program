@@ -18,7 +18,7 @@ const DishRecommendation = () => {
         setRecommendation(null);
 
         try {
-            const response = await axios.post('http://localhost:5015/dish-recommendation', {
+            const response = await axios.post('http://localhost:5016/dish-recommendation', {
                 wine
             });
 
@@ -53,11 +53,9 @@ const DishRecommendation = () => {
             {recommendation && (
                 <div className="mt-4">
                     <h2 className="text-xl font-semibold text-gray-800 mb-2">Dish Recommendation</h2>
-                    { recommendation.dishes.map((dish, index) => (
-                        <p key={index} className="text-gray-800 mb-2">
-                            <span className="font-semibold">Dish:</span> {dish}
-                        </p>
-                    ))}
+                    <p className="text-gray-800 mb-2">
+                        <span className="font-semibold">Dishes:</span> {recommendation.pairings.join(', ')}
+                    </p>
                     <p className="text-gray-800 mb-2">
                         <span className="font-semibold">Description:</span> {recommendation.text}
                     </p>
