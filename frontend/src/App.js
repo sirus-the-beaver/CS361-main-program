@@ -1,5 +1,6 @@
-import React, { useState, useEffect } from 'react';
-import { Routes, Route, useNavigate } from 'react-router-dom';
+import React, { useEffect, useContext } from 'react';
+import { Routes, Route, useNavigate, Navigate } from 'react-router-dom';
+import { AuthContext } from './context/AuthContext';
 import Signup from './components/Signup';
 import SignIn from './components/SignIn';
 import SignOut from './components/SignOut';
@@ -13,25 +14,34 @@ import DishRecommendation from './components/DishRecommendation';
 
 function App() {
   const navigate = useNavigate();
-
-  const [signedIn, setSignedIn] = useState(false);
+  const { auth, login } = useContext(AuthContext);
 
   useEffect(() => {
-    if (localStorage.getItem('token')) {
-      setSignedIn(true);
-    } else {
-      setSignedIn(false);
+    const token = localStorage.getItem('token');
+    const user = localStorage.getItem('user');
+    const userId = localStorage.getItem('userId');
+    const username = localStorage.getItem('username');
+    if (token && user && userId && username) {
+      login({ token, user: JSON.parse(user), userId, username });
     }
-  }, []);  
+  }, [login]);
+
+  const ProtectedRoute = ({ element }) => {
+    if (!auth.token) {
+      return <Navigate to="/signin" />;
+    }
+
+    return element;
+  }
 
   return (
     <div>
       <header className="bg-gray-800 py-4">
         <div className="container mx-auto flex flex-wrap justify-between items-center px-4">
           <h1 className="text-white text-2xl font-bold">DishFindr</h1>
-          {signedIn ? (
+          {auth.token ? (
             <nav className="w-full sm:w-auto">
-              <SignOut setSignedIn={setSignedIn} />
+              <SignOut />
               <button className="text-white text-base sm:text-lg ml-0 sm:ml-4 mt-2 sm:mt-0 font-medium" onClick={() => navigate('/preferences')}>Preferences</button>
               <button className="text-white text-base sm:text-lg ml-0 sm:ml-4 mt-2 sm:mt-0 font-medium" onClick={() => navigate('/ingredient-input')}>Ingredient Input</button>
               <button className="text-white text-base sm:text-lg ml-0 sm:ml-4 mt-2 sm:mt-0 font-medium" onClick={() => navigate('/wine-recommendation')}>Wine Recommendations</button>
@@ -44,19 +54,17 @@ function App() {
         </div>
       </header>
       <Routes>
-        <Route path="/signup" element={<Signup setSignedIn={setSignedIn} />} />
-        <Route path="/signin" element={<SignIn setSignedIn={setSignedIn} />} />
-        {signedIn && (
-          <>
-            <Route path="/preferences" element={<Preferences />} />
-            <Route path="/ingredient-input" element={<IngredientInput />} />
-            <Route path="/recipes-list" element={<RecipeList />} />
-            <Route path="/recipe-detail" element={<RecipeDetail />} />
-            <Route path="/recipe-recommendations" element={<RecipeRecommendations />} />
-            <Route path="/wine-recommendation" element={<WineRecommendation />} />
-            <Route path="/dish-recommendation" element={<DishRecommendation />} />
-          </>
-        )}
+        <Route path="/signup" element={<Signup />} />
+        <Route path="/signin" element={<SignIn />} />
+    
+        <Route path="/preferences" element={<ProtectedRoute><Preferences /></ProtectedRoute>} />
+        <Route path="/ingredient-input" element={<ProtectedRoute><IngredientInput /></ProtectedRoute>} />
+        <Route path="/recipes-list" element={<ProtectedRoute><RecipeList /></ProtectedRoute>} />
+        <Route path="/recipe-detail" element={<ProtectedRoute><RecipeDetail /></ProtectedRoute>} />
+        <Route path="/recipe-recommendations" element={<ProtectedRoute><RecipeRecommendations /></ProtectedRoute>} />
+        <Route path="/wine-recommendation" element={<ProtectedRoute><WineRecommendation /></ProtectedRoute>} />
+        <Route path="/dish-recommendation" element={<ProtectedRoute><DishRecommendation /></ProtectedRoute>} />
+
       </Routes>
     </div>
   );

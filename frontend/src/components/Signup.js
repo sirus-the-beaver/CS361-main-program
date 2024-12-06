@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { AuthContext } from '../context/AuthContext';
 
-const Signup = ({ setSignedIn }) => {
+const Signup = () => {
     const { login } = useContext(AuthContext);
     const navigate = useNavigate();
     const [formData, setFormData] = useState({ username: "", email: "", password: "", confirmPassword: "" });
@@ -15,14 +15,19 @@ const Signup = ({ setSignedIn }) => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
+
+        if (formData.password !== formData.confirmPassword) {
+            setError("Passwords do not match");
+            return;
+        }
         try {
             const res = await axios.post("https://dishfindr-4d3c3b6f3b94.herokuapp.com/users/register", formData);
             localStorage.setItem("token", res.data.token);
             localStorage.setItem("user", JSON.stringify(res.data.user.email));
             localStorage.setItem("userId", res.data.user.id);
             localStorage.setItem("username", res.data.user.username);
-            setSignedIn(true);
             login(res.data);
+
             navigate("/ingredient-input");
         } catch (error) {
             setError(error.response?.data?.message);

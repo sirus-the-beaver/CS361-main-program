@@ -1,8 +1,10 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+import { AuthContext } from '../context/AuthContext';
 
-const SignIn = ({ setSignedIn }) => {
+const SignIn = () => {
+    const { setSignedIn } = useContext(AuthContext);
     const navigate = useNavigate();
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
@@ -18,11 +20,16 @@ const SignIn = ({ setSignedIn }) => {
             console.log(response);
 
             if (response.status === 200) {
+                login({
+                    user: response.data.user.email,
+                    userId: response.data.user.id,
+                    username: response.data.user.username,
+                    token: response.data.token
+                })
                 localStorage.setItem('token', response.data.token);
                 localStorage.setItem('user', JSON.stringify(response.data.user.email));
                 localStorage.setItem('userId', response.data.user.id);
                 localStorage.setItem('username', response.data.user.username);
-                setSignedIn(true);
                 navigate('/ingredient-input');
             } else {
                 setError('An error occurred');
