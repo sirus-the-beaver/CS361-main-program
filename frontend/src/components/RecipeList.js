@@ -14,7 +14,6 @@ const RecipeList = () => {
                 const response = await axios.get(`https://dishfindr-4d3c3b6f3b94.herokuapp.com/recipes/${id}`,
                     { headers: { Authorization: `Bearer ${localStorage.getItem('token')}` }
                     });
-                    console.log(response.data);
                 navigate(`/recipe-detail`, { state: { recipe: response.data, id: id } });
             } catch (error) {
                 console.error(error);
