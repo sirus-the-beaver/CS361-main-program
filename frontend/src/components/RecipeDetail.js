@@ -12,6 +12,8 @@ const RecipeDetail = () => {
     // const [newNote, setNewNote] = useState('');
     const userId = localStorage.getItem('userId');
 
+    console.log(recipe);
+
     const handleExcludeRecipe = async () => {
         try {
             const response = await axios.post('https://dishfindr-microservice-c-ca58d83577d1.herokuapp.com/exclude-recipe', {
