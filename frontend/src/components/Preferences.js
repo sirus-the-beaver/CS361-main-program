@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 
@@ -10,7 +10,6 @@ const Preferences = () => {
     const [loading, setLoading] = useState(false);
     const [message, setMessage] = useState("");
     const userId = localStorage.getItem("userId");
-    const userIdRef = useRef(userId);
 
     const availableDietaryRestrictions = [
         "gluten free",
@@ -41,8 +40,7 @@ const Preferences = () => {
     ]
 
     useEffect(() => {
-        if (userIdRef.current !== userId) {
-            userIdRef.current = userId;
+        if (savedPreferences === null) {
             const fetchPreferences = async () => {
                 try {
                     setLoading(true);
@@ -60,7 +58,7 @@ const Preferences = () => {
 
             fetchPreferences();
         }
-    }, [userId]);
+    }, [userId, savedPreferences]);
 
     const handleCheckboxChange = (item, state, setState) => {
         if (state.includes(item)) {

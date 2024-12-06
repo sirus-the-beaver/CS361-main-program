@@ -1,18 +1,16 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 
 const RecipeRecommendations = () => {
     const navigate = useNavigate();
-    const [recipes, setRecipes] = useState([]);
+    const [recipes, setRecipes] = useState(null);
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState(null);
     const userId = localStorage.getItem('userId');
-    const userIdRef = useRef(userId);
 
     useEffect(() => {
-        if (userIdRef.current !== userId) {
-            userIdRef.current = userId;
+        if (recipes === null) {
             const fetchRecipes = async () => {
                 try {
                     setLoading(true);
@@ -28,7 +26,7 @@ const RecipeRecommendations = () => {
 
             fetchRecipes();
         }
-    }, [userId]);
+    }, [userId, recipes]);
 
     const viewRecipe = (id) => {
         const fetchRecipe = async () => {
