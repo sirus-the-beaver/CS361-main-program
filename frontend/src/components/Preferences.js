@@ -77,6 +77,7 @@ const Preferences = () => {
                 dietaryRestrictions,
                 allergies
             });
+            setSavedPreferences({ dietaryRestrictions, allergies });
             setMessage(response.data.message);
             setLoading(false);
         } catch (error) {
