@@ -30,6 +30,8 @@ function App() {
       }
 
       setIsAuthenticated(true);
+    } else {
+      setIsAuthenticated(false);
     }
   }, [auth, login, setIsAuthenticated]);
 
