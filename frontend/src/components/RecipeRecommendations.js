@@ -13,7 +13,7 @@ const RecipeRecommendations = () => {
         const fetchRecipes = async () => {
             try {
                 setLoading(true);
-                const response = await axios.get(`http://localhost:5005/recipes/${userId}`);
+                const response = await axios.get(`https://dishfindr-microservice-c-ca58d83577d1.herokuapp.com/recipes/${userId}`);
                 setRecipes(response.data);
                 setLoading(false);
             } catch (error) {

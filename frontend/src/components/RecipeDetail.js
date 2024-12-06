@@ -14,7 +14,7 @@ const RecipeDetail = () => {
 
     const handleExcludeRecipe = async () => {
         try {
-            const response = await axios.post('http://localhost:5005/exclude-recipe', {
+            const response = await axios.post('https://dishfindr-microservice-c-ca58d83577d1.herokuapp.com/exclude-recipe', {
                 userId: userId,
                 recipeId: recipeId
             });

@@ -43,7 +43,7 @@ const Preferences = () => {
         const fetchPreferences = async () => {
             try {
                 setLoading(true);
-                const response = await axios.get(`http://localhost:5003/preferences/${userId}`);
+                const response = await axios.get(`https://dishfindr-microservice-b-0d2b598a2033.herokuapp.com/preferences/${userId}`);
                 setSavedPreferences(response.data);
                 setDietaryRestrictions(response.data.dietaryRestrictions || []);
                 setAllergies(response.data.allergies || []);
@@ -70,7 +70,7 @@ const Preferences = () => {
     const handleSavePreferences = async () => {
         try {
             setLoading(true);
-            const response = await axios.post("http://localhost:5003/preferences", {
+            const response = await axios.post("https://dishfindr-microservice-b-0d2b598a2033.herokuapp.com/preferences", {
                 userId,
                 dietaryRestrictions,
                 allergies

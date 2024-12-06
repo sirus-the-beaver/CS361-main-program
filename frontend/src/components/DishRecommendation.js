@@ -18,7 +18,7 @@ const DishRecommendation = () => {
         setRecommendation(null);
 
         try {
-            const response = await axios.post('http://localhost:5016/dish-recommendation', {
+            const response = await axios.post('https://dishfindr-microservice-d-96299d64d5d1.herokuapp.com/dish-recommendation', {
                 wine
             });
 

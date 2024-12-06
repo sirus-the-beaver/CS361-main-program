@@ -37,7 +37,7 @@ const IngredientInput = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            const response = await axios.post('http://localhost:5003/recommendations',
+            const response = await axios.post('https://dishfindr-microservice-b-0d2b598a2033.herokuapp.com/recommendations',
                 { ingredients: ingredientsList,
                   ignorePantry: ignorePantry,
                   userId: userId
