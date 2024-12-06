@@ -29,7 +29,7 @@ function App() {
 
       setIsAuthenticated(true);
     }
-  }, [auth, login]);
+  }, [auth, login, setIsAuthenticated]);
 
   const ProtectedRoute = ({ children }) => {
     if (!isAuthenticated) {
