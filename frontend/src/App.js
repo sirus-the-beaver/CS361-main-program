@@ -22,9 +22,11 @@ function App() {
     const userId = localStorage.getItem('userId');
     const username = localStorage.getItem('username');
     if (token && user && userId && username) {
-      login({ token, user, userId, username });
+      if (auth.token !== token) {
+        login({ token, user, userId, username });
+      }
     }
-  }, [login]);
+  }, [auth.token, login]);
 
   const ProtectedRoute = ({ children }) => {
     if (!auth.token) {
