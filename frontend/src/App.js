@@ -22,7 +22,7 @@ function App() {
     const userId = localStorage.getItem('userId');
     const username = localStorage.getItem('username');
     if (token && user && userId && username) {
-      login({ token, user: JSON.parse(user), userId, username });
+      login({ token, user, userId, username });
     }
   }, [login]);
 
