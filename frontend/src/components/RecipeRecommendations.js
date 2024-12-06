@@ -4,19 +4,19 @@ import axios from 'axios';
 
 const RecipeRecommendations = () => {
     const navigate = useNavigate();
-    const [recipes, setRecipes] = useState(null);
+    const [recipes, setRecipes] = useState([]);
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState(null);
     const userId = localStorage.getItem('userId');
 
     useEffect(() => {
-        if (recipes === null) {
+        if (recipes.length === 0) {
             const fetchRecipes = async () => {
                 try {
                     setLoading(true);
                     const response = await axios.get(`https://dishfindr-microservice-c-ca58d83577d1.herokuapp.com/recipes/${userId}`);
                     console.log(response.data);
-                    setRecipes(response.data);
+                    response.data.length > 0 ? setRecipes(response.data) : setError('No recipes found');
                     setLoading(false);
                 } catch (error) {
                     console.error('Error fetching recipes: ', error);
