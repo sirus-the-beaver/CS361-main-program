@@ -1,4 +1,4 @@
-import React, { useEffect, useContext } from 'react';
+import React, { useEffect, useContext, useState } from 'react';
 import { Routes, Route, useNavigate, Navigate } from 'react-router-dom';
 import { AuthContext } from './context/AuthContext';
 import Signup from './components/Signup';
@@ -15,23 +15,24 @@ import DishRecommendation from './components/DishRecommendation';
 function App() {
   const navigate = useNavigate();
   const { auth, login } = useContext(AuthContext);
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
 
   useEffect(() => {
     const token = localStorage.getItem('token');
     const user = localStorage.getItem('user');
     const userId = localStorage.getItem('userId');
     const username = localStorage.getItem('username');
-    console.log(auth.token);
-    console.log(token);
     if (token && user && userId && username) {
       if (auth.token !== token) {
         login({ token, user, userId, username });
       }
+
+      setIsAuthenticated(true);
     }
   }, [auth, login]);
 
   const ProtectedRoute = ({ children }) => {
-    if (!auth.token) {
+    if (!isAuthenticated) {
       return <Navigate to="/signin" replace />;
     }
 
