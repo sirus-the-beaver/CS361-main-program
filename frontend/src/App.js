@@ -21,6 +21,8 @@ function App() {
     const user = localStorage.getItem('user');
     const userId = localStorage.getItem('userId');
     const username = localStorage.getItem('username');
+    console.log(auth.token);
+    console.log(token);
     if (token && user && userId && username) {
       if (auth.token !== token) {
         login({ token, user, userId, username });
