@@ -14,7 +14,9 @@ const RecipeRecommendations = () => {
             const fetchRecipes = async () => {
                 try {
                     setLoading(true);
-                    const response = await axios.get(`https://dishfindr-microservice-c-ca58d83577d1.herokuapp.com/recipes/${userId}`);
+                    const response = await axios.get(`https://dishfindr-microservice-c-ca58d83577d1.herokuapp.com/recipes/${userId}`,
+                        { headers: { Authorization: `Bearer ${localStorage.getItem('token')}` }
+                    });
                     console.log(response.data);
                     response.data.length > 0 ? setRecipes(response.data) : setError('No recipes found');
                     setLoading(false);

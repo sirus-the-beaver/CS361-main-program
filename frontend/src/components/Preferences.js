@@ -44,7 +44,9 @@ const Preferences = () => {
             const fetchPreferences = async () => {
                 try {
                     setLoading(true);
-                    const response = await axios.get(`https://dishfindr-microservice-b-0d2b598a2033.herokuapp.com/preferences/${userId}`);
+                    const response = await axios.get(`https://dishfindr-microservice-b-0d2b598a2033.herokuapp.com/preferences/${userId}`,
+                        { headers: { Authorization: `Bearer ${localStorage.getItem('token')}` }
+                    });
                     setSavedPreferences(response.data);
                     setDietaryRestrictions(response.data.dietaryRestrictions || []);
                     setAllergies(response.data.allergies || []);
@@ -72,10 +74,17 @@ const Preferences = () => {
     const handleSavePreferences = async () => {
         try {
             setLoading(true);
-            const response = await axios.post("https://dishfindr-microservice-b-0d2b598a2033.herokuapp.com/preferences", {
-                userId,
-                dietaryRestrictions,
-                allergies
+            const response = await axios.post("https://dishfindr-microservice-b-0d2b598a2033.herokuapp.com/preferences",
+            {
+                headers: {
+                    Authorization: `Bearer ${localStorage.getItem('token')}`,
+                    'Content-Type': 'application/json'
+                },
+                body: {
+                    userId,
+                    dietaryRestrictions,
+                    allergies
+                }
             });
             setSavedPreferences({ dietaryRestrictions, allergies });
             setMessage(response.data.message);

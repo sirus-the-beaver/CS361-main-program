@@ -14,9 +14,16 @@ const RecipeDetail = () => {
 
     const handleExcludeRecipe = async () => {
         try {
-            const response = await axios.post('https://dishfindr-microservice-c-ca58d83577d1.herokuapp.com/exclude-recipe', {
-                userId: userId,
-                recipeId: recipeId
+            const response = await axios.post('https://dishfindr-microservice-c-ca58d83577d1.herokuapp.com/exclude-recipe',
+            {
+                headers: {
+                    Authorization: `Bearer ${localStorage.getItem('token')}`,
+                    'Content-Type': 'application/json'
+                },
+                body: {
+                    userId: userId,
+                    recipeId: recipeId
+                }
             });
         } catch (error) {
             console.error(error);

@@ -18,8 +18,16 @@ const DishRecommendation = () => {
         setRecommendation(null);
 
         try {
-            const response = await axios.post('https://dishfindr-microservice-d-96299d64d5d1.herokuapp.com/dish-recommendation', {
-                wine
+            const response = await axios.post('https://dishfindr-microservice-d-96299d64d5d1.herokuapp.com/dish-recommendation',
+            {
+                headers: {
+                    'Content-Type': 'application/json',
+                    Authorization: `Bearer ${localStorage.getItem('token')}`
+                
+                },
+                body: {
+                    wine: wine
+                }
             });
 
             setRecommendation(response.data);
