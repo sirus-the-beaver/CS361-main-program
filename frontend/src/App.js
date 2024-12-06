@@ -26,12 +26,12 @@ function App() {
     }
   }, [login]);
 
-  const ProtectedRoute = ({ element }) => {
+  const ProtectedRoute = ({ children }) => {
     if (!auth.token) {
       return <Navigate to="/signin" replace />;
     }
 
-    return element;
+    return children;
   }
 
   return (
