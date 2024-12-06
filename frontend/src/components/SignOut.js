@@ -8,7 +8,10 @@ const SignOut = () => {
         localStorage.removeItem('token');
         localStorage.removeItem('user');
         localStorage.removeItem('userId');
+        localStorage.removeItem('username');
         navigate('/signin', { replace: true });
+
+        window.location.reload();
     };
 
     return (
