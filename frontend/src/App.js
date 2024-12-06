@@ -17,10 +17,12 @@ function App() {
   const [signedIn, setSignedIn] = useState(false);
 
   useEffect(() => {
-    if (localStorage.getItem('token')) {
+    if (!localStorage.getItem('token')) {
+      navigate('/signup')
+    } else {
       setSignedIn(true);
     }
-  }, []);  
+  }, [navigate]);  
 
   return (
     <div>
@@ -42,6 +44,7 @@ function App() {
         </div>
       </header>
       <Routes>
+        <Route path="/" element={<Signup setSignedIn={setSignedIn} />} />
         <Route path="/signup" element={<Signup setSignedIn={setSignedIn} />} />
         <Route path="/signin" element={<SignIn setSignedIn={setSignedIn} />} />
         <Route path="/preferences" element={<Preferences />} />
