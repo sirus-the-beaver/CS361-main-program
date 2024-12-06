@@ -17,8 +17,6 @@ const SignIn = () => {
                 { email, password }
             );
 
-            console.log(response);
-
             if (response.status === 200) {
                 login({
                     user: response.data.user.email,

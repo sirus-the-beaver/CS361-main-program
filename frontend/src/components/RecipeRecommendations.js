@@ -14,7 +14,6 @@ const RecipeRecommendations = () => {
             try {
                 setLoading(true);
                 const response = await axios.get(`http://localhost:5005/recipes/${userId}`);
-                console.log(response.data);
                 setRecipes(response.data);
                 setLoading(false);
             } catch (error) {
