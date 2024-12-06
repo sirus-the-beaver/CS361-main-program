@@ -23,8 +23,6 @@ function App() {
     const username = localStorage.getItem('username');
     if (token && user && userId && username) {
       login({ token, user: JSON.parse(user), userId, username });
-    } else {
-      navigate('/signup');
     }
   }, [login]);
 
@@ -56,6 +54,7 @@ function App() {
         </div>
       </header>
       <Routes>
+        <Route path="/" element={<Navigate to="/signup" />} />
         <Route path="/signup" element={<Signup />} />
         <Route path="/signin" element={<SignIn />} />
     
