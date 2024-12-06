@@ -8,22 +8,26 @@ const RecipeRecommendations = () => {
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState(null);
     const userId = localStorage.getItem('userId');
+    const userIdRef = useRef(userId);
 
     useEffect(() => {
-        const fetchRecipes = async () => {
-            try {
-                setLoading(true);
-                const response = await axios.get(`https://dishfindr-microservice-c-ca58d83577d1.herokuapp.com/recipes/${userId}`);
-                setRecipes(response.data);
-                setLoading(false);
-            } catch (error) {
-                console.error('Error fetching recipes: ', error);
-                setError('An error occurred');
-                setLoading(false);
-            }
-        };
+        if (userIdRef.current !== userId) {
+            userIdRef.current = userId;
+            const fetchRecipes = async () => {
+                try {
+                    setLoading(true);
+                    const response = await axios.get(`https://dishfindr-microservice-c-ca58d83577d1.herokuapp.com/recipes/${userId}`);
+                    setRecipes(response.data);
+                    setLoading(false);
+                } catch (error) {
+                    console.error('Error fetching recipes: ', error);
+                    setError('An error occurred');
+                    setLoading(false);
+                }
+            };
 
-        fetchRecipes();
+            fetchRecipes();
+        }
     }, [userId]);
 
     const viewRecipe = (id) => {
