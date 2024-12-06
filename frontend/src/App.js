@@ -23,12 +23,14 @@ function App() {
     const username = localStorage.getItem('username');
     if (token && user && userId && username) {
       login({ token, user: JSON.parse(user), userId, username });
+    } else {
+      navigate('/signup');
     }
   }, [login]);
 
   const ProtectedRoute = ({ element }) => {
     if (!auth.token) {
-      return <Navigate to="/signin" />;
+      return <Navigate to="/signin" replace />;
     }
 
     return element;
