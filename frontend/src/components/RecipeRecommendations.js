@@ -30,7 +30,7 @@ const RecipeRecommendations = () => {
     const viewRecipe = (id) => {
         const fetchRecipe = async () => {
             try {
-                const response = await axios.get(`http://localhost:5002/recipes/${id}`,
+                const response = await axios.get(`https://dishfindr-4d3c3b6f3b94.herokuapp.com/recipes/${id}`,
                     { headers: { Authorization: `Bearer ${localStorage.getItem('token')}` }
                     });
                 navigate(`/recipe-detail`, { state: { recipe: response.data, id: id } });

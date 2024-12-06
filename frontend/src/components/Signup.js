@@ -16,7 +16,7 @@ const Signup = ({ setSignedIn }) => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            const res = await axios.post("http://localhost:5002/users/register", formData);
+            const res = await axios.post("https://dishfindr-4d3c3b6f3b94.herokuapp.com/users/register", formData);
             localStorage.setItem("token", res.data.token);
             localStorage.setItem("user", JSON.stringify(res.data.user.email));
             localStorage.setItem("userId", res.data.user.id);
