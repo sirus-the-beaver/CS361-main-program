@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 
@@ -10,6 +10,7 @@ const Preferences = () => {
     const [loading, setLoading] = useState(false);
     const [message, setMessage] = useState("");
     const userId = localStorage.getItem("userId");
+    const userIdRef = useRef(userId);
 
     const availableDietaryRestrictions = [
         "gluten free",
@@ -40,22 +41,25 @@ const Preferences = () => {
     ]
 
     useEffect(() => {
-        const fetchPreferences = async () => {
-            try {
-                setLoading(true);
-                const response = await axios.get(`https://dishfindr-microservice-b-0d2b598a2033.herokuapp.com/preferences/${userId}`);
-                setSavedPreferences(response.data);
-                setDietaryRestrictions(response.data.dietaryRestrictions || []);
-                setAllergies(response.data.allergies || []);
-                setLoading(false);
-            } catch (error) {
-                console.error("Error fetching preferences: ", error);
-                setMessage("No preferences found. Please set your preferences.");
-                setLoading(false);
-            }
-        };
+        if (userIdRef.current !== userId) {
+            userIdRef.current = userId;
+            const fetchPreferences = async () => {
+                try {
+                    setLoading(true);
+                    const response = await axios.get(`https://dishfindr-microservice-b-0d2b598a2033.herokuapp.com/preferences/${userId}`);
+                    setSavedPreferences(response.data);
+                    setDietaryRestrictions(response.data.dietaryRestrictions || []);
+                    setAllergies(response.data.allergies || []);
+                    setLoading(false);
+                } catch (error) {
+                    console.error("Error fetching preferences: ", error);
+                    setMessage("No preferences found. Please set your preferences.");
+                    setLoading(false);
+                }
+            };
 
-        fetchPreferences();
+            fetchPreferences();
+        }
     }, [userId]);
 
     const handleCheckboxChange = (item, state, setState) => {
