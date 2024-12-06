@@ -19,6 +19,8 @@ function App() {
   useEffect(() => {
     if (localStorage.getItem('token')) {
       setSignedIn(true);
+    } else {
+      setSignedIn(false);
     }
   }, []);  
 
@@ -42,16 +44,19 @@ function App() {
         </div>
       </header>
       <Routes>
-        <Route path="/" element={<Signup setSignedIn={setSignedIn} />} />
         <Route path="/signup" element={<Signup setSignedIn={setSignedIn} />} />
         <Route path="/signin" element={<SignIn setSignedIn={setSignedIn} />} />
-        <Route path="/preferences" element={<Preferences />} />
-        <Route path="/ingredient-input" element={<IngredientInput />} />
-        <Route path="/recipes-list" element={<RecipeList />} />
-        <Route path="/recipe-detail" element={<RecipeDetail />} />
-        <Route path="/recipe-recommendations" element={<RecipeRecommendations />} />
-        <Route path="/wine-recommendation" element={<WineRecommendation />} />
-        <Route path="/dish-recommendation" element={<DishRecommendation />} />
+        {signedIn && (
+          <>
+            <Route path="/preferences" element={<Preferences />} />
+            <Route path="/ingredient-input" element={<IngredientInput />} />
+            <Route path="/recipes-list" element={<RecipeList />} />
+            <Route path="/recipe-detail" element={<RecipeDetail />} />
+            <Route path="/recipe-recommendations" element={<RecipeRecommendations />} />
+            <Route path="/wine-recommendation" element={<WineRecommendation />} />
+            <Route path="/dish-recommendation" element={<DishRecommendation />} />
+          </>
+        )}
       </Routes>
     </div>
   );
