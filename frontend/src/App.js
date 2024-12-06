@@ -28,7 +28,7 @@ function App() {
         login({ token, user, userId, username });
       }
     }
-  }, [auth.token, login]);
+  }, [auth, login]);
 
   const ProtectedRoute = ({ children }) => {
     if (!auth.token) {
