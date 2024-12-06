@@ -21,6 +21,7 @@ const SignIn = ({ setSignedIn }) => {
                 localStorage.setItem('token', response.data.token);
                 localStorage.setItem('user', JSON.stringify(response.data.user.email));
                 localStorage.setItem('userId', response.data.user.id);
+                localStorage.setItem('username', response.data.user.username);
                 setSignedIn(true);
                 navigate('/ingredient-input');
             } else {

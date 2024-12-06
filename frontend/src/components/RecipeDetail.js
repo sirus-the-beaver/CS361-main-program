@@ -7,53 +7,59 @@ const RecipeDetail = () => {
     const location = useLocation();
     const navigate = useNavigate();
     const recipe = location.state.recipe;
-    const [notes, setNotes] = useState([]);
-    const [newNote, setNewNote] = useState('');
+    const recipeId = location.state.id.toString();
+    // const [notes, setNotes] = useState([]);
+    // const [newNote, setNewNote] = useState('');
     const userId = localStorage.getItem('userId');
 
     const handleExcludeRecipe = async () => {
         try {
-            const response = await axios.post('http://localhost:5011/exclude-recipe', {
-                userId,
-                recipeId: recipe.id
+            const response = await axios.post('http://localhost:5005/exclude-recipe', {
+                userId: userId,
+                recipeId: recipeId
             });
         } catch (error) {
             console.error(error);
         }
     };
 
-    const handleAddNote = async () => {
-        const response = await axios.post('http://localhost:5002/notes', {
-            recipeId: recipe.id,
-            content: newNote,
-            author: localStorage.getItem('username')
-        }, {
-            headers: {
-                Authorization: `Bearer ${localStorage.getItem('token')}`,
-                'Content-Type': 'application/json'
-            }
-        });
+    // const handleAddNote = async () => {
+    //     const response = await axios.post('http://localhost:5002/notes', {
+    //         recipeId: recipeId,
+    //         content: newNote,
+    //         author: localStorage.getItem('username')
+    //     }, {
+    //         headers: {
+    //             Authorization: `Bearer ${localStorage.getItem('token')}`,
+    //             'Content-Type': 'application/json'
+    //         }
+    //     });
 
-        const data = await response.data;
-        setNotes([...notes, data.note]);
-        setNewNote('');
-    }
+    //     console.log(response.data.note.content);
+    //     const data = await response.data;
+    //     if (notes) {
+    //         setNotes([...notes, data.note]);
+    //     } else {
+    //         setNotes([data.note]);
+    //     }
+    //     setNewNote('');
+    // }
 
-    const fetchNotes = async () => {
-        const response = await axios.get(`http://localhost:5002/notes`, {
-            headers: {
-                Authorization: `Bearer ${localStorage.getItem('token')}`
-            }
-        });
+    // const fetchNotes = async () => {
+    //     const response = await axios.get('http://localhost:5002/notes', {
+    //         headers: {
+    //             Authorization: `Bearer ${localStorage.getItem('token')}`
+    //         }
+    //     });
 
-        const data = await response.data;
-        console.log(data.notes);
-        setNotes(data.notes);
-    }
+    //     const data = await response.data;
+    //     console.log(data.notes);
+    //     setNotes(data.notes);
+    // }
 
-    useEffect(() => {
-        fetchNotes();
-    }, []);
+    // useEffect(() => {
+    //     fetchNotes();
+    // }, []);
 
     return (
         <div className="p-4 sm:p-6 bg-gray-100 min-h-screen">
@@ -71,7 +77,7 @@ const RecipeDetail = () => {
             >
                 Exclude Recipe from Recommendations
             </button>
-            <div className="bg-white p-4 sm:p-6 rounded-lg shadow-lg mb-4 sm:mb-6">
+            {/* <div className="bg-white p-4 sm:p-6 rounded-lg shadow-lg mb-4 sm:mb-6">
                 <h2 className="text-xl sm:text-2xl font-semibold text-gray-700 mb-4">Notes</h2>
                 <div className="flex flex-col sm:flex-row items-center mb-4">
                     <input
@@ -89,14 +95,14 @@ const RecipeDetail = () => {
                     </button>
                 </div>
                 <div className="space-y-4">
-                    {notes.map((note, index) => (
+                    {notes && notes.map((note, index) => (
                         <div key={index} className="border rounded-lg p-4 shadow">
                             <h3 className="text-lg font-semibold text-gray-600">{note.author}</h3>
                             <p>{note.content}</p>
                         </div>
                     ))}
                 </div>
-            </div>
+            </div> */}
             <div className="space-y-6">
                 {recipe.map((section, index) => (
                     <div key={index} className="bg-white p-4 sm:p-6 rounded-lg shadow-lg">

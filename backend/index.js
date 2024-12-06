@@ -15,13 +15,13 @@ app.use(express.json());
 
 const userRoutes = require('./routes/userRoutes');
 const recipeRoutes = require('./routes/recipeRoutes');
-const notesRoutes = require('./routes/notesRoutes');
+// const notesRoutes = require('./routes/notesRoutes');
 
 app.use('/users', userRoutes);
 
 app.use(authMiddleware);
 app.use('/recipes', recipeRoutes);
-app.use('/notes', notesRoutes);
+// app.use('/notes', notesRoutes);
 
 app.listen(PORT, () => {
     console.log(`Server running on port ${PORT}`);

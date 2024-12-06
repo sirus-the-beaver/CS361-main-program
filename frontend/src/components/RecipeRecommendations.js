@@ -5,13 +5,15 @@ import axios from 'axios';
 const RecipeRecommendations = () => {
     const navigate = useNavigate();
     const [recipes, setRecipes] = useState([]);
+    const [loading, setLoading] = useState(false);
+    const [error, setError] = useState(null);
     const userId = localStorage.getItem('userId');
 
     useEffect(() => {
         const fetchRecipes = async () => {
             try {
                 setLoading(true);
-                const response = await axios.get(`http://localhost:5011/recipes/${userId}`);
+                const response = await axios.get(`http://localhost:5005/recipes/${userId}`);
                 console.log(response.data);
                 setRecipes(response.data);
                 setLoading(false);
@@ -31,7 +33,7 @@ const RecipeRecommendations = () => {
                 const response = await axios.get(`http://localhost:5002/recipes/${id}`,
                     { headers: { Authorization: `Bearer ${localStorage.getItem('token')}` }
                     });
-                navigate(`/recipe-detail`, { state: { recipe: response.data } });
+                navigate(`/recipe-detail`, { state: { recipe: response.data, id: id } });
             } catch (error) {
                 console.error(error);
             }

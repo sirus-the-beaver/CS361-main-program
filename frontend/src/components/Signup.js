@@ -20,6 +20,7 @@ const Signup = ({ setSignedIn }) => {
             localStorage.setItem("token", res.data.token);
             localStorage.setItem("user", JSON.stringify(res.data.user.email));
             localStorage.setItem("userId", res.data.user.id);
+            localStorage.setItem("username", res.data.user.username);
             setSignedIn(true);
             login(res.data);
             navigate("/ingredient-input");

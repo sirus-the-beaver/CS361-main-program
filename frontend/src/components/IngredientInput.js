@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
-import { FcInfo, FcPrevious } from 'react-icons/fc';
 import { BiSolidEditAlt, BiSolidTrashAlt } from "react-icons/bi";
 
 const IngredientInput = () => {
@@ -38,7 +37,7 @@ const IngredientInput = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            const response = await axios.post('http://localhost:5012/recommendations',
+            const response = await axios.post('http://localhost:5003/recommendations',
                 { ingredients: ingredientsList,
                   ignorePantry: ignorePantry,
                   userId: userId
@@ -61,24 +60,6 @@ const IngredientInput = () => {
 
     return (
         <div className="p-4 max-w-md mx-auto sm:max-w-lg md:max-w-xl lg:max-w-2xl">
-            <div className="flex items-center mb-4">
-                <button 
-                    onClick={() => navigate(-1)} 
-                    className="text-blue-500 underline mr-2"
-                >
-                    <FcPrevious className="inline-block" size={48} />
-                </button>
-                
-                <div className="relative flex items-center">
-                    <FcInfo 
-                        className="text-xl cursor-pointer"
-                        title="Going back will erase these results"
-                    />
-                    <span className="absolute bottom-full mb-1 w-48 p-2 text-sm text-white bg-gray-700 rounded-lg shadow-lg opacity-0 transition-opacity duration-200 hover:opacity-100">
-                        Going back will erase inputted ingredients
-                    </span>
-                </div>
-            </div>
             <form onSubmit={handleSubmit} className="space-y-4">
                 <input
                     type='text'

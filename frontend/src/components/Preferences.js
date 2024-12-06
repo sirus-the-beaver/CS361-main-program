@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
-import { FcPrevious } from 'react-icons/fc';
 
 const Preferences = () => {
     const navigate = useNavigate();
@@ -44,7 +43,7 @@ const Preferences = () => {
         const fetchPreferences = async () => {
             try {
                 setLoading(true);
-                const response = await axios.get(`http://localhost:5012/preferences/${userId}`);
+                const response = await axios.get(`http://localhost:5003/preferences/${userId}`);
                 setSavedPreferences(response.data);
                 setDietaryRestrictions(response.data.dietaryRestrictions || []);
                 setAllergies(response.data.allergies || []);
@@ -71,7 +70,7 @@ const Preferences = () => {
     const handleSavePreferences = async () => {
         try {
             setLoading(true);
-            const response = await axios.post("http://localhost:5012/preferences", {
+            const response = await axios.post("http://localhost:5003/preferences", {
                 userId,
                 dietaryRestrictions,
                 allergies
@@ -87,13 +86,6 @@ const Preferences = () => {
 
     return (
         <div className="container mx-auto p-4 max-w-md sm:max-w-lg md:max-w-xl lg:max-w-2xl">
-            <button
-                onClick={() => navigate(-1)}
-                className="text-blue-500 underline mr-2 hover:text-blue-700 transition duration-300 flex items-center"
-            >
-                <FcPrevious className="inline-block" size={24} />
-                <span className="ml-2">Back</span>
-            </button>
             <h2 className="text-2xl font-bold mb-4 text-center sm:text-left">Manage Your Preferences</h2>
 
             {loading ? (
