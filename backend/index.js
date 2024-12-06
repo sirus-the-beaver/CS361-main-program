@@ -25,8 +25,7 @@ const recipeRoutes = require('./routes/recipeRoutes');
 
 app.use('/users', userRoutes);
 
-app.use(authMiddleware);
-app.use('/recipes', recipeRoutes);
+app.use('/recipes', authMiddleware, recipeRoutes);
 // app.use('/notes', notesRoutes);
 
 
