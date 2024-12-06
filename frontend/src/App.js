@@ -18,6 +18,7 @@ function App() {
   const [isAuthenticated, setIsAuthenticated] = useState( () => {
     return localStorage.getItem('token') ? true : false;
   });
+  const [authLoading, setAuthLoading] = useState(true);
 
   useEffect(() => {
     const token = localStorage.getItem('token');
@@ -33,9 +34,14 @@ function App() {
     } else {
       setIsAuthenticated(false);
     }
+    setAuthLoading(false);
   }, [auth, login, setIsAuthenticated]);
 
   const ProtectedRoute = ({ children }) => {
+    if (authLoading) {
+      return <div>Loading...</div>;
+    }
+
     if (!isAuthenticated) {
       return <Navigate to="/signin" replace />;
     }
