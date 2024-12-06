@@ -15,10 +15,6 @@ app.use(express.static(path.join(__dirname, '../frontend/build')));
 app.use(cors());
 app.use(express.json());
 
-app.get('*', (req, res) => {
-    res.sendFile(path.join(__dirname, '../frontend/build', 'index.html'));
-});
-
 const userRoutes = require('./routes/userRoutes');
 const recipeRoutes = require('./routes/recipeRoutes');
 // const notesRoutes = require('./routes/notesRoutes');
@@ -28,6 +24,9 @@ app.use('/users', userRoutes);
 app.use('/recipes', authMiddleware, recipeRoutes);
 // app.use('/notes', notesRoutes);
 
+app.get('*', (req, res) => {
+    res.sendFile(path.join(__dirname, '../frontend/build', 'index.html'));
+});
 
 app.listen(PORT, () => {
     console.log(`Server running on port ${PORT}`);
