@@ -17,12 +17,10 @@ function App() {
   const [signedIn, setSignedIn] = useState(false);
 
   useEffect(() => {
-    if (!localStorage.getItem('token')) {
-      navigate('/signup')
-    } else {
+    if (localStorage.getItem('token')) {
       setSignedIn(true);
     }
-  }, [navigate]);  
+  }, []);  
 
   return (
     <div>
