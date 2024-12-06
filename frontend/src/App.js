@@ -26,6 +26,7 @@ function App() {
     <div>
       <header className="bg-gray-800 py-4">
         <div className="container mx-auto flex flex-wrap justify-between items-center px-4">
+          <h1 className="text-white text-2xl font-bold">DishFindr</h1>
           {signedIn ? (
             <nav className="w-full sm:w-auto">
               <SignOut setSignedIn={setSignedIn} />
