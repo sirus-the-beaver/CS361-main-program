@@ -28,7 +28,7 @@ const SignIn = () => {
                 localStorage.setItem('user', JSON.stringify(response.data.user.email));
                 localStorage.setItem('userId', response.data.user.id);
                 localStorage.setItem('username', response.data.user.username);
-                navigate('/ingredient-input');
+                navigate('/ingredient-input', { replace: true });
             } else {
                 setError('An error occurred');
             }
