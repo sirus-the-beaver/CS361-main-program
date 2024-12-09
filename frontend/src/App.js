@@ -58,7 +58,7 @@ function App() {
             {menuOpen ? <AiOutlineCloseCircle /> : <AiOutlineMenu />}
           </button>
           {auth.token ? (
-            <nav className={`w-full sm:w-auto sm:flex ${menuOpen ? "block" : "hidden"} bg-gray-700 sm:bg-transparent sm:static absolute top-full left-0`}>
+            <nav className={`w-full sm:w-auto sm:flex ${menuOpen ? "block" : "hidden"} bg-gray-700 sm:bg-transparent sm:static absolute top-0 left-0 z-10`}>
               <SignOut />
               <button className="block sm:inline-block text-white text-base sm:text-lg p-4 sm:p-0 sm:ml-4 font-medium" onClick={() => {
                 setMenuOpen(false);
