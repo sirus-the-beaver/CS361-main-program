@@ -12,7 +12,6 @@ import RecipeDetail from './components/RecipeDetail';
 import RecipeRecommendations from './components/RecipeRecommendations';
 import WineRecommendation from './components/WineRecommendation';
 import DishRecommendation from './components/DishRecommendation';
-import { set } from 'mongoose';
 
 function App() {
   const navigate = useNavigate();
