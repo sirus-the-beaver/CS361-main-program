@@ -35,7 +35,7 @@ function App() {
       setIsAuthenticated(false);
     }
     setAuthLoading(false);
-  }, [auth, login, setIsAuthenticated]);
+  }, [auth, login]);
 
   const ProtectedRoute = ({ children }) => {
     if (authLoading) {
