@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { FcPrevious } from 'react-icons/fc';
@@ -7,19 +7,28 @@ const RecipeList = () => {
     const location = useLocation();
     const navigate = useNavigate();
     const recipes = location.state.recipes;
+    const [error, setError] = useState(null);
+    const [loading, setLoading] = useState(false);
 
-    const viewRecipe = (id) => {
+    const viewRecipe = async (id) => {
         const fetchRecipe = async () => {
             try {
                 const response = await axios.get(`https://dishfindr-4d3c3b6f3b94.herokuapp.com/recipes/${id}`,
                     { headers: { Authorization: `Bearer ${localStorage.getItem('token')}` }
                     });
-                navigate(`/recipe-detail`, { state: { recipe: response.data, id: id } });
+                if (response.status === 200) {
+                    navigate(`/recipe-detail`, { state: { recipe: response.data, id: id } });
+                } else {
+                    console.error('An error occurred');
+                    setError('Could not fetch recipe details');
+                }
             } catch (error) {
                 console.error(error);
             }
         }
-        fetchRecipe();
+        setLoading(true);
+        await fetchRecipe();
+        setLoading(false);
     }   
 
     return (
@@ -33,6 +42,7 @@ const RecipeList = () => {
             </button>
             <h2 className="text-2xl sm:text-3xl font-extrabold mb-4 sm:mb-6 text-gray-800">Recipes</h2>
             <p className="mb-4 sm:mb-6 text-gray-600">Please choose a recipe to view the equipment, ingredients, and steps.</p>
+            {error && <p className="text-red-500 mb-4">{error}</p>}
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
                 {recipes.map(recipe => (
                     <div key={recipe.id} className="border rounded-lg p-4 shadow-lg bg-white hover:shadow-xl transition duration-300">
