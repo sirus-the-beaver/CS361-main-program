@@ -15,9 +15,7 @@ import DishRecommendation from './components/DishRecommendation';
 function App() {
   const navigate = useNavigate();
   const { auth, login } = useContext(AuthContext);
-  const [isAuthenticated, setIsAuthenticated] = useState( () => {
-    return localStorage.getItem('token') ? true : false;
-  });
+  const isAuthenticated = !!auth.token;
   const [authLoading, setAuthLoading] = useState(true);
 
   useEffect(() => {
@@ -29,10 +27,6 @@ function App() {
       if (auth.token !== token) {
         login({ token, user, userId, username });
       }
-
-      setIsAuthenticated(true);
-    } else {
-      setIsAuthenticated(false);
     }
     setAuthLoading(false);
   }, [auth, login]);
