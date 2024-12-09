@@ -43,6 +43,7 @@ const RecipeList = () => {
             <h2 className="text-2xl sm:text-3xl font-extrabold mb-4 sm:mb-6 text-gray-800">Recipes</h2>
             <p className="mb-4 sm:mb-6 text-gray-600">Please choose a recipe to view the equipment, ingredients, and steps.</p>
             {error && <p className="text-red-500 mb-4">{error}</p>}
+            {loading && <p className="text-gray-800 mb-4">Loading...</p>}
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
                 {recipes.map(recipe => (
                     <div key={recipe.id} className="border rounded-lg p-4 shadow-lg bg-white hover:shadow-xl transition duration-300">
