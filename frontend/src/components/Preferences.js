@@ -74,18 +74,18 @@ const Preferences = () => {
     const handleSavePreferences = async () => {
         try {
             setLoading(true);
-            const response = await axios.post("https://dishfindr-microservice-b-0d2b598a2033.herokuapp.com/preferences",
-            {
-                headers: {
-                    Authorization: `Bearer ${localStorage.getItem('token')}`,
-                    'Content-Type': 'application/json'
-                },
-                body: {
+            const response = await axios.post('https://dishfindr-microservice-b-0d2b598a2033.herokuapp.com/preferences',
+                {
                     userId,
                     dietaryRestrictions,
                     allergies
-                }
-            });
+                },
+                {
+                    headers: {
+                        Authorization: `Bearer ${localStorage.getItem('token')}`,
+                        'Content-Type': 'application/json'
+                    }
+                });
             setSavedPreferences({ dietaryRestrictions, allergies });
             setMessage(response.data.message);
             setLoading(false);

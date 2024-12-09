@@ -39,14 +39,14 @@ const IngredientInput = () => {
         try {
             const response = await axios.post('https://dishfindr-microservice-b-0d2b598a2033.herokuapp.com/recommendations',
             {
+                ingredients: ingredientsList,
+                ignorePantry: ignorePantry,
+                userId: userId
+            },
+            {
                 headers: {
                     Authorization: `Bearer ${localStorage.getItem('token')}`,
                     'Content-Type': 'application/json'
-                },
-                body: {
-                    ingredients: ingredientsList,
-                    ignorePantry: ignorePantry,
-                    userId: userId
                 }
             });
             if (response.status === 200) {

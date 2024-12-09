@@ -20,12 +20,12 @@ const WineRecommendation = () => {
         try {
             const response = await axios.post('https://dishfindr-microservice-d-96299d64d5d1.herokuapp.com/wine-recommendation',
             {
+                food: food
+            },
+            {
                 headers: {
                     'Content-Type': 'application/json',
                     Authorization: `Bearer ${localStorage.getItem('token')}`
-                },
-                body: {
-                    food: food
                 }
             });
 
