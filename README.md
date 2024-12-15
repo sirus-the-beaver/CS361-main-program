@@ -13,11 +13,11 @@ DishFindr is a microservice-based web application designed to provide personaliz
 ## Architecture
 The application follows a microservice architecture consisting of the following components:
 
-1. ***Main Program***: Serves as the frontend and API gateway.
-2. ***Microservices***:
-    - Recipe Recommendation Microservice
-    - Wine Recommendation Microservice
-    - User Preferences Microservice
+1. **Main Program**: Serves as the frontend and API gateway.
+2. **Microservices**:
+    - [User Preferences Microservice](https://github.com/sirus-the-beaver/cs361-microservice-b)
+    - [Recipe Recommendation Microservice](https://github.com/sirus-the-beaver/cs361-microservice-c)
+    - [Wine Recommendation Microservice](https://github.com/sirus-the-beaver/cs361-microservice-d)
 
 Each microservice is responsible for its domain logic and communicates with the main program through RESTful APIs.
 
@@ -26,5 +26,5 @@ Each microservice is responsible for its domain logic and communicates with the 
 - **Backend**: Node.js, Express
 - **Database**: MongoDB
 - **Authentication**: JSON Web Tokens (JWT)
-- **API**: Spoonacular API
+- **API**: [Spoonacular API](https://spoonacular.com/food-api)
 - **Deployment**: Heroku
