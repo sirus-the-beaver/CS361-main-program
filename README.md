@@ -22,9 +22,9 @@ The application follows a microservice architecture consisting of the following 
 Each microservice is responsible for its domain logic and communicates with the main program through RESTful APIs.
 
 ## Tech Stack
-- ***Frontend***: React.js, TailwindCSS
-- ***Backend***: Node.js, Express
-- ***Database***: MongoDB
-- ***Authentication***: JSON Web Tokens (JWT)
-- ***API***: Spoonacular API
-- ***Deployment***: Heroku
+- **Frontend**: React.js, TailwindCSS
+- **Backend**: Node.js, Express
+- **Database**: MongoDB
+- **Authentication**: JSON Web Tokens (JWT)
+- **API**: Spoonacular API
+- **Deployment**: Heroku
